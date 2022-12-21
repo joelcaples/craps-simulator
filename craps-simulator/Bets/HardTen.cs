@@ -2,7 +2,7 @@
 
 namespace craps_simulator.Bets
 {
-    internal class HardTen : _HardFourOrTen, IBet {
+    internal class HardTen : _Hardway, IBet {
 
         public string Name {
             get {

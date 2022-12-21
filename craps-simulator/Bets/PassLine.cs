@@ -4,8 +4,6 @@ using craps_simulator.Models;
 namespace craps_simulator.Bets {
     internal class PassLine : _Bet, IBet {
 
-        private float _sessionResult = 0;
-
         public string Name {
             get {
                 return "Pass Line";
@@ -40,11 +38,6 @@ namespace craps_simulator.Bets {
             }
 
             return new BetResult() { Pays = 0 };
-        }
-        public float SessionResult {
-            get {
-                return _sessionResult;
-            }
         }
     }
 }

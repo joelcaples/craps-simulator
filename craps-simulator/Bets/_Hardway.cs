@@ -2,18 +2,29 @@
 using craps_simulator.Models;
 
 namespace craps_simulator.Bets {
-    internal abstract class _HardFourOrTen : _Bet {
+    internal abstract class _Hardway : _Bet {
 
         private readonly int _requiredDie;
-        private float _sessionResult = 0;
+        private readonly float _pays;
 
-        public _HardFourOrTen(int roll) {
+        public _Hardway(int roll) {
+
             switch(roll) {
                 case 4:
                     _requiredDie = 2;
+                    _pays = lookups.HardFour.Pays;
+                    break;
+                case 6:
+                    _requiredDie = 3;
+                    _pays = lookups.HardSix.Pays;
+                    break;
+                case 8:
+                    _requiredDie = 4;
+                    _pays = lookups.HardEight.Pays;
                     break;
                 case 10:
                     _requiredDie = 5;
+                    _pays = lookups.HardTen.Pays;
                     break;
                 default:
                     throw new Exception("Invalid Die");
@@ -41,12 +52,6 @@ namespace craps_simulator.Bets {
             }
 
             return new BetResult() { Pays = 0 };
-        }
-
-        public float SessionResult {
-            get {
-                return _sessionResult;
-            }
         }
     }
 }

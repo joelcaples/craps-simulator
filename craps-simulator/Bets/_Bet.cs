@@ -2,6 +2,7 @@
     internal class _Bet {
 
         protected float _bet = 0;
+        protected float _sessionResult = 0;
 
         public virtual float Bet {
             get {
@@ -13,5 +14,10 @@
             _bet += bet;
         }
 
+        public float SessionResult {
+            get {
+                return _sessionResult;
+            }
+        }
     }
 }

@@ -31,5 +31,8 @@
         public static ExpectedEdge HardSix = new(10 / 1, 9 / 1, 9.1, "");
         public static ExpectedEdge HardEight = new(10 / 1, 9 / 1, 9.1, "");
         public static ExpectedEdge BigSixBigEight = new(6 / 5, 1 / 1, 9.1, "");
+        public static ExpectedEdge PlaceFourOrTen = new(2 / 1, 9 / 5, 6.7, "");
+        public static ExpectedEdge PlaceFiveOrNine = new(3 / 2, 7 / 5, 4, "");
+        public static ExpectedEdge PlaceSixOrEight = new(6 / 5, 7 / 6, 1.52, "");
     }
 }

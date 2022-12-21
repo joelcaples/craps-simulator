@@ -10,7 +10,11 @@ namespace craps_simulator {
             Go(new List<IBet>() { 
                 new PassLine(),
                 new HardTen(),
-                new HardFour()
+                new HardFour(),
+                new HardEight(),
+                new Place(4),
+                new Place(6),
+                new Place(9)
             });
         }
 
@@ -47,6 +51,7 @@ namespace craps_simulator {
                 }
 
                 if (game.Phase == PhaseType.On && dice.die1 + dice.die2 == 7) {
+                    Console.Write("  $ "+bets.Sum(b => b.SessionResult).ToString());
                     Console.WriteLine("");
                     Console.Write("New Roller:");
                     game = new Game();

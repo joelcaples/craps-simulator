@@ -2,12 +2,12 @@
 
 namespace craps_simulator.Bets
 {
-    internal class HardFour : _Hardway, IBet {
+    internal class HardEight : _Hardway, IBet {
         public string Name {
             get {
                 return "Hard Four";
             }
         }
-        public HardFour() :base(4) { }
+        public HardEight() :base(8) { }
     }
 }
