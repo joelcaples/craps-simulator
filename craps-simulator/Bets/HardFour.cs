@@ -3,6 +3,11 @@
 namespace craps_simulator.Bets
 {
     internal class HardFour : _HardFourOrTen, IBet {
-        public HardFour() :base(10) { }
+        public string Name {
+            get {
+                return "Hard Four";
+            }
+        }
+        public HardFour() :base(4) { }
     }
 }

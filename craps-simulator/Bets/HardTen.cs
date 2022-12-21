@@ -4,6 +4,12 @@ namespace craps_simulator.Bets
 {
     internal class HardTen : _HardFourOrTen, IBet {
 
+        public string Name {
+            get {
+                return "Hard Ten";
+            }
+        }
+
         public override float Bet {
             get {
                 return base.Bet;
