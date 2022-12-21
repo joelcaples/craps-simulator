@@ -1,12 +1,9 @@
 ﻿using craps_simulator.Bets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace craps_simulator {
+
     internal class Runner {
+
         public void Go() {
 
             var winners = 0;
@@ -18,8 +15,6 @@ namespace craps_simulator {
 
             var bet = 5;
             bankroll -= 5;
-
-
 
             for (int i = 0; i < iterations; i++) {
 
@@ -36,11 +31,7 @@ namespace craps_simulator {
                 (int die1, int die2) dice = crapslib.roll();
 
                 var hardTenResult = new HardTen().Result(dice, bet);
-                //var isHardTen = dice.die1 == 5 && dice.die2 == 5;
-                //var isCraps = dice.die1 + dice.die2 == 7;
-                //var isSoftTen = dice.die1 + dice.die2 == 10 && (dice.die1 != 5 || dice.die2 != 5);
 
-                // Winner
                 if (hardTenResult.IsWinner) {
                     bankroll += hardTenResult.Pays;
                     housetake -= bet * hardTenResult.Pays;
@@ -54,19 +45,6 @@ namespace craps_simulator {
                     losers++;
                     continue;
                 }
-                //if (isHardTen) {
-                //    bankroll += bet * lookups.HardTen.Pays;
-                //    housetake -= bet * lookups.HardTen.Pays;
-                //    winners++;
-                //    continue;
-                //}
-
-                //if (isCraps || isSoftTen) {
-                //    housetake += bet;
-                //    bet = 0;
-                //    losers++;
-                //    continue;
-                //}
             }
 
             bankroll += bet;

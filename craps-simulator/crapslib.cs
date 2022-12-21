@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Cryptography;
 
 namespace craps_simulator {
+
     internal class crapslib {
+
         internal static (int die1, int die2) roll() {
             var upperBound = 6;
             var die1 = RandomNumberGenerator.GetInt32(upperBound)+1;

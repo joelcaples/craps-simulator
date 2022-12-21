@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace craps_simulator {
+﻿namespace craps_simulator {
 
     public class ExpectedEdge {
 
         public ExpectedEdge(float trueOdds, float pays, double houseEdge, string slangTerm = "") { 
             TrueOdds = trueOdds;
             Pays = pays;
-            //PaysTo = paysTo;
             HouseEdge = houseEdge;
             SlangTerm = slangTerm;
         }
 
         public float TrueOdds { get; set; }
         public float Pays { get; set; }
-        //public int PaysTo { get; set; }
         public double HouseEdge { get; set; }
         public string SlangTerm { get; set;}
     }
