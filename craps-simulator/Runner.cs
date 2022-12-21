@@ -1,10 +1,19 @@
 ﻿using craps_simulator.Bets;
+using craps_simulator.Interfaces;
+using craps_simulator.Models;
 
 namespace craps_simulator {
 
     internal class Runner {
 
         public void Go() {
+            Go(new List<IBet>() { 
+                new HardTen(),
+                new HardFour()
+            });
+        }
+
+        public void Go(IEnumerable<IBet> bets) {
 
             var winners = 0;
             var losers = 0;
@@ -13,10 +22,8 @@ namespace craps_simulator {
             float bankroll = initialBankRoll;
             float housetake = 0;
 
-
-            var hardTen = new HardTen();
-            hardTen.PlaceBet(5);
-            bankroll -= 5;
+            foreach(IBet bet in bets)
+                PlaceBet(bet, bet.Bet, ref bankroll);
 
             for (int i = 0; i < iterations; i++) {
 
@@ -25,30 +32,19 @@ namespace craps_simulator {
                     break;
                 }
 
-                if (hardTen.Bet == 0) {
-                    hardTen.PlaceBet(5);
-                    bankroll -= 5;
-                }
+                foreach(IBet bet in bets) {
+                    if (bet.Bet == 0)
+                        PlaceBet(bet, 5, ref bankroll);
 
-                (int die1, int die2) dice = crapslib.roll();
+                    (int die1, int die2) dice = crapslib.roll();
 
-                var hardTenResult = hardTen.Result(dice);
-
-                if (hardTenResult.IsWinner) {
-                    bankroll += hardTenResult.Pays;
-                    housetake -= hardTen.Bet * hardTenResult.Pays;
-                    winners++;
-                    continue;
-                }
-
-                if (hardTenResult.IsLoser) {
-                    housetake += hardTen.Bet;
-                    losers++;
-                    continue;
+                    var hardTenResult = bet.Result(dice);
+                    ProcessResult(bet.Bet, hardTenResult, ref bankroll, ref housetake, ref winners, ref losers);
                 }
             }
 
-            bankroll += hardTen.Bet;
+            foreach (IBet bet in bets)
+                bankroll += bet.Bet;
 
             var winpct = Math.Round((float)winners / losers * 100, 2);
             var winnings = bankroll - initialBankRoll;
@@ -63,6 +59,27 @@ namespace craps_simulator {
 
             if (winnings < 0)
                 Console.WriteLine($"You Lost $:{winnings * -1:C}");
+        }
+
+        private void PlaceBet(IBet bet, float amt, ref float bankroll) {
+            if (bankroll < amt)
+                return;
+
+            bet.PlaceBet(amt);
+            bankroll -= amt;
+        }
+
+        private void ProcessResult(float bet, BetResult betResult, ref float bankroll, ref float housetake, ref int winners, ref int losers) {
+            if (betResult.IsWinner) {
+                bankroll += betResult.Pays;
+                housetake -= betResult.Bet * betResult.Pays;
+                winners++;
+            }
+
+            if (betResult.IsLoser) {
+                housetake += betResult.Bet;
+                losers++;
+            }
         }
     }
 }
