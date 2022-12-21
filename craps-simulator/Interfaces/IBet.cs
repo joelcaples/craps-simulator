@@ -3,6 +3,8 @@
 namespace craps_simulator.Interfaces
 {
     internal interface IBet {
-        public BetResult Result((int die1, int die2) dice, float bet);
+
+        void PlaceBet(float bet);
+        public BetResult Result((int die1, int die2) dice);
     }
 }

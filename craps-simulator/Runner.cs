@@ -13,7 +13,9 @@ namespace craps_simulator {
             float bankroll = initialBankRoll;
             float housetake = 0;
 
-            var bet = 5;
+
+            var hardTen = new HardTen();
+            hardTen.PlaceBet(5);
             bankroll -= 5;
 
             for (int i = 0; i < iterations; i++) {
@@ -23,31 +25,30 @@ namespace craps_simulator {
                     break;
                 }
 
-                if (bet == 0) {
-                    bet = 5;
+                if (hardTen.Bet == 0) {
+                    hardTen.PlaceBet(5);
                     bankroll -= 5;
                 }
 
                 (int die1, int die2) dice = crapslib.roll();
 
-                var hardTenResult = new HardTen().Result(dice, bet);
+                var hardTenResult = hardTen.Result(dice);
 
                 if (hardTenResult.IsWinner) {
                     bankroll += hardTenResult.Pays;
-                    housetake -= bet * hardTenResult.Pays;
+                    housetake -= hardTen.Bet * hardTenResult.Pays;
                     winners++;
                     continue;
                 }
 
                 if (hardTenResult.IsLoser) {
-                    housetake += bet;
-                    bet = 0;
+                    housetake += hardTen.Bet;
                     losers++;
                     continue;
                 }
             }
 
-            bankroll += bet;
+            bankroll += hardTen.Bet;
 
             var winpct = Math.Round((float)winners / losers * 100, 2);
             var winnings = bankroll - initialBankRoll;
