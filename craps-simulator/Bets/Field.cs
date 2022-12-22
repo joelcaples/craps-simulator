@@ -8,18 +8,17 @@ namespace craps_simulator.Bets {
         public string Name => $"Field";
 
         public IBetResult Result(Game game, (int die1, int die2) dice) {
-            //if (game.Phase == PhaseType.Off)
-            //    return new BetResult() { };
 
             var roll = dice.die1 + dice.die2;
             var isWinner = (new List<int>() { 2, 3, 4, 9, 10, 11, 12 }).Contains(roll);
             var isLoser = !isWinner;
 
             if (isWinner) {
-                _sessionResult += Pays(roll);
+                var pays = Pays(roll);
+                _sessionResult += pays;
                 _bet = 0;
                 return new BetResult() { IsWinner = true, Bet=base.Bet, 
-                    Pays= Pays(roll)
+                    Pays= pays
                 };
             }
 
