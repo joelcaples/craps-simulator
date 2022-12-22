@@ -23,27 +23,12 @@ namespace craps_simulator.Bets {
             var isLoser = isCraps;
             var isWinner = roll == _spot;
 
-            if (isWinner) {
-                _sessionResult += base.Bet;
-                return new BetResult() { IsWinner = true, Bet=base.Bet, Pays=PlacePayout()};
-            }
-
-            if (isLoser) {
-                _sessionResult -= base.Bet;
-                _bet = 0;
-                return new BetResult() { IsLoser = true };
-            }
-
-            return new BetResult() { };
-        }
-
-        private int PlacePayout() {
-            return _spot switch {
-                4 or 10 => (int)Math.Round(Lookups.PlaceFourOrTen.Pays * _bet, 0, MidpointRounding.ToZero),
-                5 or 9 => (int)Math.Round(Lookups.PlaceFiveOrNine.Pays * _bet, 0, MidpointRounding.ToZero),
-                6 or 8 => (int)Math.Round(Lookups.PlaceSixOrEight.Pays * _bet, 0, MidpointRounding.ToZero),
+            return base.Result(isWinner, isLoser, game.Point switch {
+                4 or 10 => Lookups.PlaceFourOrTen,
+                5 or 9 => Lookups.PlaceFiveOrNine,
+                6 or 8 => Lookups.PlaceSixOrEight,
                 _ => throw new Exception("Invalid Place Bet"),
-            };
+            });
         }
     }
 }
