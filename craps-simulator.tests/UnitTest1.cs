@@ -103,17 +103,19 @@ namespace craps_simulator.tests {
         }
 
         [Theory]
-        [InlineData(4, 4, 2, 2, true, false, 9)] // Hit 4
-        [InlineData(5, 5, 2, 3, true, false, 5 * (7 / 5))] // Hit 5
-        [InlineData(6, 6, 2, 4, true, false, 5 * (7 / 6))] // Hit 6
-        [InlineData(8, 8, 2, 6, true, false, 5 * (7 / 6))] // Hit 8
-        [InlineData(9, 9, 3, 6, true, false, 5 * (7 / 5))] // Hit 9
-        [InlineData(10, 10, 4, 6, true, false, 9)] // Hit 10
-        [InlineData(4, 4, 1, 6, false, true, 0)] // Craps 7
-        [InlineData(4, 4, 1, 1, false, false, 0)] // Miss
-        public void Place(short point, short spot, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
+        [InlineData(4, 4, 2, 2, 5, true, false, 9)] // Hit 4
+        [InlineData(5, 5, 2, 3, 5, true, false, 7)] // Hit 5
+        [InlineData(6, 6, 2, 4, 5, true, false, 5 * (7 / 6))] // Hit 6 Incorrect Bet (5)
+        [InlineData(8, 8, 2, 6, 5, true, false, 5 * (7 / 6))] // Hit 8 Incorrect Bet (5)
+        [InlineData(6, 6, 2, 4, 6, true, false, 7 * (7 / 6))] // Hit 6 w/Correct bet (6)
+        [InlineData(8, 8, 2, 6, 6, true, false, 7 * (7 / 6))] // Hit 8 w/Correct bet (6)
+        [InlineData(9, 9, 3, 6, 5, true, false, 7)] // Hit 9
+        [InlineData(10, 10, 4, 6, 5, true, false, 9)] // Hit 10
+        [InlineData(4, 4, 1, 6, 5, false, true, 0)] // Craps 7
+        [InlineData(4, 4, 1, 1, 5, false, false, 0)] // Miss
+        public void Place(short point, short spot, short die1, short die2, int bet, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
             var place = new Place(spot);
-            place.PlaceBet(5);
+            place.PlaceBet(bet);
             var result = place.Result(new Game() { Point = point }, new(die1, die2));
 
             Assert.Equal(expectedIsWinner, result.IsWinner);

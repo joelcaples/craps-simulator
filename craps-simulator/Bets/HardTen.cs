@@ -10,7 +10,7 @@ namespace craps_simulator.Bets
             }
         }
 
-        public override decimal Bet {
+        public override int Bet {
             get {
                 return base.Bet;
             }

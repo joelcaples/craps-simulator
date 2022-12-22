@@ -23,9 +23,9 @@ namespace craps_simulator {
             var winners = 0;
             var losers = 0;
             var iterations = 100;
-            decimal initialBankRoll = 1000;
-            decimal bankroll = initialBankRoll;
-            decimal housetake = 0;
+            int initialBankRoll = 1000;
+            int bankroll = initialBankRoll;
+            int housetake = 0;
 
             foreach(IBet bet in bets)
                 PlaceBet(bet, bet.Bet, ref bankroll);
@@ -96,7 +96,7 @@ namespace craps_simulator {
                 Console.WriteLine($"You Lost $:{winnings * -1:C}");
         }
 
-        private void PlaceBet(IBet bet, decimal amt, ref decimal bankroll) {
+        private void PlaceBet(IBet bet, int amt, ref int bankroll) {
             if (bankroll < amt)
                 return;
 
@@ -104,7 +104,7 @@ namespace craps_simulator {
             bankroll -= amt;
         }
 
-        private void ProcessResult(decimal bet, IBetResult betResult, ref decimal bankroll, ref decimal housetake, ref int winners, ref int losers) {
+        private void ProcessResult(int bet, IBetResult betResult, ref int bankroll, ref int housetake, ref int winners, ref int losers) {
             if (betResult.IsWinner) {
                 bankroll += betResult.Pays;
                 housetake -= bet * betResult.Pays;

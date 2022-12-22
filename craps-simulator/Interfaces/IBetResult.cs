@@ -3,6 +3,6 @@
         decimal Bet { get; set; }
         bool IsWinner { get; set; }
         bool IsLoser { get; set; }
-        decimal Pays { get; set; }
+        int Pays { get; set; }
     }
 }

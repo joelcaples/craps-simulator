@@ -4,16 +4,16 @@ using craps_simulator.Models;
 namespace craps_simulator.Bets {
     public class _Bet {
 
-        protected decimal _bet = 0;
+        protected int _bet = 0;
         protected decimal _sessionResult = 0;
 
-        public virtual decimal Bet {
+        public virtual int Bet {
             get {
                 return _bet;
             }
         }
 
-        public void PlaceBet(decimal bet) {
+        public void PlaceBet(int bet) {
             _bet += bet;
         }
 
@@ -26,9 +26,9 @@ namespace craps_simulator.Bets {
         protected IBetResult Result(bool isWinner, bool isLoser, ExpectedEdge edge) {
             if (isWinner) {
                 _sessionResult += _bet;
-                return new BetResult() { IsWinner = true, Bet = _bet, Pays = _bet * edge.Pays };
+                return new BetResult() { IsWinner = true, Bet = _bet, Pays = (int)Math.Round(_bet * edge.Pays, 0, MidpointRounding.ToZero) };
             }
-
+            
             if (isLoser) {
                 _sessionResult -= _bet;
                 _bet = 0;

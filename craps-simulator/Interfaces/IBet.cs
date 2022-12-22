@@ -3,8 +3,8 @@
     internal interface IBet {
 
         public string Name { get; }
-        public decimal Bet { get; }
-        void PlaceBet(decimal bet);
+        public int Bet { get; }
+        void PlaceBet(int bet);
         public IBetResult Result(Game game, (short die1, short die2) dice);
         public decimal SessionResult { get; }
     }

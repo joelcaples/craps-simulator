@@ -42,9 +42,9 @@ namespace craps_simulator.Bets {
             if (isHard) {
                 // Hard ten and hard four pay the same
                 _sessionResult += base.Bet * _pays;
-                return new BetResult() { IsWinner = true, Bet = base.Bet, Pays = base.Bet * _pays };
+                return new BetResult() { IsWinner = true, Bet = base.Bet, Pays = (int)Math.Round(base.Bet * _pays, 0, MidpointRounding.ToZero) };
             }
-
+            
             if (isCraps || isSoft) {
                 _sessionResult -= _bet;
                 _bet = 0;
