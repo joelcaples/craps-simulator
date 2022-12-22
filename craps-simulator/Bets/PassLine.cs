@@ -32,8 +32,8 @@ namespace craps_simulator.Bets {
 
             return base.Result(
                 IsWinner(game, new Dice(dice)), 
-                IsLoser(game, new Dice(dice)), 
-                lookups.Pass);
+                IsLoser(game, new Dice(dice)),
+                Lookups.Pass);
         }
     }
 }

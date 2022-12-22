@@ -3,9 +3,9 @@
     internal interface IBet {
 
         public string Name { get; }
-        public float Bet { get; }
-        void PlaceBet(float bet);
+        public decimal Bet { get; }
+        void PlaceBet(decimal bet);
         public IBetResult Result(Game game, (short die1, short die2) dice);
-        public float SessionResult { get; }
+        public decimal SessionResult { get; }
     }
 }

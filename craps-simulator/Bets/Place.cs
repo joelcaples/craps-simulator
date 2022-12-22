@@ -37,17 +37,17 @@ namespace craps_simulator.Bets {
             return new BetResult() { };
         }
 
-        private float PlacePayout() {
+        private decimal PlacePayout() {
             switch(_spot) {
                 case 4:
                 case 10:
-                    return lookups.PlaceFourOrTen.Pays;
+                    return Lookups.PlaceFourOrTen.Pays * _bet;
                 case 5:
                 case 9:
-                    return lookups.PlaceFiveOrNine.Pays;
+                    return Lookups.PlaceFiveOrNine.Pays * _bet;
                 case 6:
                 case 8:
-                    return lookups.PlaceSixOrEight.Pays;
+                    return Lookups.PlaceSixOrEight.Pays * _bet;
                 default:
                     throw new Exception("Invalid Place Bet");
 

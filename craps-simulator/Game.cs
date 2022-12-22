@@ -1,22 +1,38 @@
-﻿namespace craps_simulator {
+﻿using System.Drawing;
+
+namespace craps_simulator {
     public class Game {
 
-        private PhaseType _phase = PhaseType.Off;
+        private short _point = 0;
+
+        public Game() {
+            _point = 0;
+        }
 
         public PhaseType Phase {
             get {
-                return _phase;
+                return (new List<short>() { 4, 5, 6, 8, 9, 10 }).Contains(_point) ? PhaseType.On : PhaseType.Off;
             }
             set {
-                _phase = value;
+                if (value == PhaseType.Off)
+                    _point = 0;
             }
         }
 
-        public int Point { get; set; }
+        public void Off() {
+            _point = 0;
+        }
+
+        public short Point {
+            get => _point;
+            set {
+                if ((new List<short>() { 0, 4, 5, 6, 8, 9, 10 }).Contains(value)) {
+                    _point = value;
+                    return;
+                }
+                throw new Exception("Invalid Point");
+            }
+        }
     }
 
-    public enum PhaseType {
-        On,
-        Off
-    }
 }

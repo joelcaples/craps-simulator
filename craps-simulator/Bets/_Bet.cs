@@ -4,20 +4,20 @@ using craps_simulator.Models;
 namespace craps_simulator.Bets {
     public class _Bet {
 
-        protected float _bet = 0;
-        protected float _sessionResult = 0;
+        protected decimal _bet = 0;
+        protected decimal _sessionResult = 0;
 
-        public virtual float Bet {
+        public virtual decimal Bet {
             get {
                 return _bet;
             }
         }
 
-        public void PlaceBet(float bet) {
+        public void PlaceBet(decimal bet) {
             _bet += bet;
         }
 
-        public float SessionResult {
+        public decimal SessionResult {
             get {
                 return _sessionResult;
             }

@@ -2,7 +2,7 @@
 
 namespace craps_simulator.Bets
 {
-    internal class HardTen : _Hardway, IBet {
+    public class HardTen : _Hardway, IBet {
 
         public string Name {
             get {
@@ -10,7 +10,7 @@ namespace craps_simulator.Bets
             }
         }
 
-        public override float Bet {
+        public override decimal Bet {
             get {
                 return base.Bet;
             }

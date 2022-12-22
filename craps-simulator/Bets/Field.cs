@@ -37,10 +37,10 @@ namespace craps_simulator.Bets {
             return base.Result(
                 IsWinner(new Dice(dice)),
                 IsLoser(new Dice(dice)),
-                new Dice(dice).Roll == 2 || new Dice(dice).Roll == 12 ? lookups.FieldTwoOrTwelve : lookups.Field);
+                new Dice(dice).Roll == 2 || new Dice(dice).Roll == 12 ? Lookups.FieldTwoOrTwelve : Lookups.Field);
 
         }
 
-        private float Pays(int roll) => (new List<int>() { 3, 4, 9, 10, 11 }).Contains(roll) ? base.Bet : base.Bet * 2;
+        private decimal Pays(int roll) => (new List<int>() { 3, 4, 9, 10, 11 }).Contains(roll) ? base.Bet : base.Bet * 2;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace craps_simulator.Bets
 {
-    internal class HardEight : _Hardway, IBet {
+    public class HardEight : _Hardway, IBet {
         public string Name {
             get {
                 return "Hard Four";
