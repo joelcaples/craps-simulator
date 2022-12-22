@@ -12,7 +12,7 @@ namespace craps_simulator.Bets {
             //    return new BetResult() { };
 
             var roll = dice.die1 + dice.die2;
-            var isWinner = (new List<int>() { 3, 4, 9, 10, 11 }).Contains(roll);
+            var isWinner = (new List<int>() { 2, 3, 4, 9, 10, 11, 12 }).Contains(roll);
             var isLoser = !isWinner;
 
             if (isWinner) {
