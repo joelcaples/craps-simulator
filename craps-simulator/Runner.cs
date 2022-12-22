@@ -8,7 +8,7 @@ namespace craps_simulator {
 
         public void Go() {
             Go(new List<IBet>() { 
-                new PassLine(),
+                new Pass(),
                 new HardTen(),
                 new HardFour(),
                 new HardEight(),

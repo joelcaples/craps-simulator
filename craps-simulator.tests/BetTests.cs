@@ -10,10 +10,27 @@ namespace craps_simulator.tests {
         [InlineData(PhaseType.On, 4, 6, 1, false, true, 0)]  // Craps 7
         [InlineData(PhaseType.On, 4, 1, 1, false, false, 0)] // Point was not hit
         [InlineData(PhaseType.On, 4, 3, 1, true, false, 5)]  // Point was hit
-        public void PassLine(PhaseType phase, short point, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
-            var passLine = new PassLine();
+        public void Pass(PhaseType phase, short point, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
+            var passLine = new Pass();
             passLine.PlaceBet(5);
             var result = passLine.Result(new Game() { Phase=phase, Point = point }, new(die1, die2));
+
+            Assert.Equal(expectedIsWinner, result.IsWinner);
+            Assert.Equal(expectedIsLoser, result.IsLoser);
+            Assert.Equal(expectedPays, result.Pays);
+        }
+
+        [Theory]
+        [InlineData(PhaseType.Off, 0, 6, 1, false, true, 0)] // Craps!
+        [InlineData(PhaseType.Off, 0, 2, 1, true, false, 5)] // Comeout loss on 3
+        [InlineData(PhaseType.Off, 0, 6, 6, true, false, 5)] // Comeout loss on 12
+        [InlineData(PhaseType.On, 4, 6, 1, true, false, 5)]  // Craps 7
+        [InlineData(PhaseType.On, 4, 1, 1, false, false, 0)] // Point was not hit
+        [InlineData(PhaseType.On, 4, 3, 1, false, true, 0)]  // Point was hit
+        public void DoNotPass(PhaseType phase, short point, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
+            var doNotPass = new DoNotPass();
+            doNotPass.PlaceBet(5);
+            var result = doNotPass.Result(new Game() { Phase = phase, Point = point }, new(die1, die2));
 
             Assert.Equal(expectedIsWinner, result.IsWinner);
             Assert.Equal(expectedIsLoser, result.IsLoser);

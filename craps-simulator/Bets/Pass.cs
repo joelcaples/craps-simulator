@@ -3,11 +3,11 @@ using craps_simulator.Models;
 using System.Collections;
 
 namespace craps_simulator.Bets {
-    public class PassLine : _Bet, IBet {
+    public class Pass : _Bet, IBet {
 
         public string Name {
             get {
-                return "Pass Line";
+                return "Pass";
             }
         }
 
