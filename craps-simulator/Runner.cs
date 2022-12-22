@@ -39,7 +39,7 @@ namespace craps_simulator {
                     break;
                 }
 
-                (int die1, int die2) dice = crapslib.roll();
+                (short die1, short die2) dice = crapslib.roll();
                 Console.Write((dice.die1 + dice.die2).ToString().PadLeft(3));
 
                 foreach (IBet bet in bets) {

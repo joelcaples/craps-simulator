@@ -4,12 +4,12 @@ namespace craps_simulator {
 
     internal class crapslib {
 
-        internal static (int die1, int die2) roll() {
+        internal static (short die1, short die2) roll() {
             var upperBound = 6;
             var die1 = RandomNumberGenerator.GetInt32(upperBound)+1;
             var die2 = RandomNumberGenerator.GetInt32(upperBound)+1;
 
-            return (die1, die2);
+            return ((short)die1, (short)die2);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace craps_simulator {
+﻿using System.Linq.Expressions;
+
+namespace craps_simulator {
 
     public class ExpectedEdge {
 
@@ -20,9 +22,9 @@
         public string SlangTerm { get; set;}
     }
 
-    internal class lookups {
+    public class lookups {
 
-        public static ExpectedEdge Pass = new(null, 1 /1);
+        public static ExpectedEdge Pass = new(null, 1/1);
         public static ExpectedEdge DoNotPass = new(null,1/1);
         public static ExpectedEdge TakeOddsSixAndEight = new(null, 6/5);
         public static ExpectedEdge TakeOddsFiveAndNine = new(null, 3/2);
@@ -48,8 +50,6 @@
         //public static ExpectedEdge HardSixAndEightAU = new(null, 19/2);
         //public static ExpectedEdge HardFourAndTenAU = new(null, 15/2);
 
-
-
         public static ExpectedEdge AnySeven = new(5/1, 4/1, 16.7, "big red");
         public static ExpectedEdge Two = new(35/1, 30/1, 13.9, "snake eyes");
         public static ExpectedEdge Twelve = new(35/1, 30/1, 13.9, "boxcars");
@@ -66,5 +66,8 @@
         public static ExpectedEdge PlaceFourOrTen = new(2/1, 9/5, 6.7, "");
         public static ExpectedEdge PlaceFiveOrNine = new(3/2, 7/5, 4, "");
         public static ExpectedEdge PlaceSixOrEight = new(6/5, 7/6, 1.52, "");
+
+        public static ExpectedEdge Field = new ExpectedEdge(null, 1/1);
+        public static ExpectedEdge FieldTwoOrTwelve = new ExpectedEdge(null, 2/1);
     }
 }

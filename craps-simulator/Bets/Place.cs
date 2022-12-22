@@ -5,15 +5,15 @@ namespace craps_simulator.Bets {
 
     public class Place : _Bet, IBet {
 
-        private readonly int _spot;
+        private readonly short _spot;
 
-        public Place(int spot) {
+        public Place(short spot) {
             _spot = spot;
         }
 
         public string Name => $"Place {_spot}";
 
-        public IBetResult Result(Game game, (int die1, int die2) dice) {
+        public IBetResult Result(Game game, (short die1, short die2) dice) {
             if (game.Phase == PhaseType.Off)
                 return new BetResult() { };
 

@@ -2,12 +2,12 @@
 using craps_simulator.Models;
 
 namespace craps_simulator.Bets {
-    internal abstract class _Hardway : _Bet {
+    public abstract class _Hardway : _Bet {
 
         private readonly int _requiredDie;
         private readonly float _pays;
 
-        public _Hardway(int roll) {
+        public _Hardway(short roll) {
 
             switch(roll) {
                 case 4:
@@ -32,7 +32,7 @@ namespace craps_simulator.Bets {
             }
         }
 
-        public IBetResult Result(Game game, (int die1, int die2) dice) {
+        public IBetResult Result(Game game, (short die1, short die2) dice) {
 
             var isHard = dice.die1 == _requiredDie && dice.die2 == _requiredDie;
             var isCraps = dice.die1 + dice.die2 == 7;
@@ -51,7 +51,7 @@ namespace craps_simulator.Bets {
                 return new BetResult() { IsLoser = true, Bet = base.Bet, Pays = 0 };
             }
 
-            return new BetResult() { Pays = 0 };
+            return new BetResult() { IsWinner = false, IsLoser = false, Pays = 0 };
         }
     }
 }
