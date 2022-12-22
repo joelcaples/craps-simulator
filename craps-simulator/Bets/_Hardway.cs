@@ -12,19 +12,19 @@ namespace craps_simulator.Bets {
             switch(roll) {
                 case 4:
                     _requiredDie = 2;
-                    _pays = lookups.HardFour.Pays;
+                    _pays = lookups.HardFourOrTen.Pays;
                     break;
                 case 6:
                     _requiredDie = 3;
-                    _pays = lookups.HardSix.Pays;
+                    _pays = lookups.HardSixOrEight.Pays;
                     break;
                 case 8:
                     _requiredDie = 4;
-                    _pays = lookups.HardEight.Pays;
+                    _pays = lookups.HardSixOrEight.Pays;
                     break;
                 case 10:
                     _requiredDie = 5;
-                    _pays = lookups.HardTen.Pays;
+                    _pays = lookups.HardFourOrTen.Pays;
                     break;
                 default:
                     throw new Exception("Invalid Die");
