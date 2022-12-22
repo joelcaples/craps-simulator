@@ -1,5 +1,5 @@
 ﻿namespace craps_simulator.Bets {
-    internal class _Bet {
+    public class _Bet {
 
         protected float _bet = 0;
         protected float _sessionResult = 0;

@@ -1,5 +1,5 @@
 ﻿namespace craps_simulator {
-    internal class Game {
+    public class Game {
 
         private PhaseType _phase = PhaseType.Off;
 

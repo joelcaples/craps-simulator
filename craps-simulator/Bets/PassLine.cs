@@ -2,7 +2,7 @@
 using craps_simulator.Models;
 
 namespace craps_simulator.Bets {
-    internal class PassLine : _Bet, IBet {
+    public class PassLine : _Bet, IBet {
 
         public string Name {
             get {

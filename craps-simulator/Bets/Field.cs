@@ -3,13 +3,13 @@ using craps_simulator.Models;
 
 namespace craps_simulator.Bets {
 
-    internal class Field : _Bet, IBet {
+    public class Field : _Bet, IBet {
 
         public string Name => $"Field";
 
         public IBetResult Result(Game game, (int die1, int die2) dice) {
-            if (game.Phase == PhaseType.Off)
-                return new BetResult() { };
+            //if (game.Phase == PhaseType.Off)
+            //    return new BetResult() { };
 
             var roll = dice.die1 + dice.die2;
             var isWinner = (new List<int>() { 3, 4, 9, 10, 11 }).Contains(roll);

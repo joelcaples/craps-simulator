@@ -3,7 +3,7 @@ using craps_simulator.Models;
 
 namespace craps_simulator.Bets {
 
-    internal class Place : _Bet, IBet {
+    public class Place : _Bet, IBet {
 
         private readonly int _spot;
 

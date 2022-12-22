@@ -107,12 +107,12 @@ namespace craps_simulator {
         private void ProcessResult(float bet, IBetResult betResult, ref float bankroll, ref float housetake, ref int winners, ref int losers) {
             if (betResult.IsWinner) {
                 bankroll += betResult.Pays;
-                housetake -= betResult.Bet * betResult.Pays;
+                housetake -= bet * betResult.Pays;
                 winners++;
             }
 
             if (betResult.IsLoser) {
-                housetake += betResult.Bet;
+                housetake += bet;
                 losers++;
             }
         }
