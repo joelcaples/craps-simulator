@@ -79,7 +79,7 @@ namespace craps_simulator {
 
             Console.WriteLine("");
             Console.WriteLine("");
-            Console.WriteLine($"# of Roles:{iterations}");
+            Console.WriteLine($"# of Rolls:{iterations}");
             //Console.WriteLine($"Winners:{winners}");
             //Console.WriteLine($"Losers:{losers}");
             //Console.WriteLine($"Win %:{winpct}");
