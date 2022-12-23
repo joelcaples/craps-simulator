@@ -27,7 +27,7 @@ namespace craps_simulator.Bets {
             var isLoser = dice.IsCraps;
             var isWinner = roll == _spot;
 
-            return base.Result(isWinner, isLoser, game.Point switch {
+            return base.Result(isWinner, isLoser, _spot switch {
                 4 or 10 => Lookups.PlaceFourOrTen,
                 5 or 9 => Lookups.PlaceFiveOrNine,
                 6 or 8 => Lookups.PlaceSixOrEight,
