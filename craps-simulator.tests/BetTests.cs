@@ -58,14 +58,14 @@ namespace craps_simulator.tests {
         }
 
         [Theory]
-        [InlineData(1, 1, 10)] // Win on 2 or 12
-        [InlineData(1, 2, 5)]  // Win on other than 2 or 12
-        public void FieldBetWin(short die1, short die2, decimal expectedPays) {
+        [InlineData(1, 1, true, false, 10)] // Win on 2 or 12
+        [InlineData(1, 2, true, false, 5)]  // Win on other than 2 or 12
+        public void FieldBetWin(short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
             var field = new Field();
             field.PlaceBet(5);
             var result = field.Result(new Game() { }, new(die1, die2));
-            Assert.True(result.IsWinner);
-            Assert.False(result.IsLoser);
+            Assert.Equal(expectedIsWinner, result.IsWinner);
+            Assert.Equal(expectedIsLoser, result.IsLoser);
             Assert.Equal(expectedPays, result.Pays);
         }
 
