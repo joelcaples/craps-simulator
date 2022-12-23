@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using craps_simulator.Models;
+using System.Drawing;
+using System.Security.Cryptography;
 
 namespace craps_simulator {
     public class Game {
@@ -16,22 +18,29 @@ namespace craps_simulator {
             set {
                 if (value == PhaseType.Off)
                     _point = 0;
+                //else
+                //    throw new InvalidOperationException();
             }
         }
 
-        public void Off() {
-            _point = 0;
-        }
+        public void Off() => _point = 0;
 
         public short Point {
             get => _point;
             set {
-                if ((new List<short>() { 0, 4, 5, 6, 8, 9, 10 }).Contains(value)) {
+                if ((new List<short>() { 0, 4, 5, 6, 8, 9, 10 }).Contains(value))
                     _point = value;
-                    return;
-                }
-                throw new Exception("Invalid Point");
+                else
+                    throw new Exception("Invalid Point");
             }
+        }
+
+        public Dice Roll() {
+            var upperBound = 6;
+            var die1 = RandomNumberGenerator.GetInt32(upperBound) + 1;
+            var die2 = RandomNumberGenerator.GetInt32(upperBound) + 1;
+
+            return new Dice((short)die1, (short)die2);
         }
     }
 

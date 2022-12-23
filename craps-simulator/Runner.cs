@@ -39,8 +39,8 @@ namespace craps_simulator {
                     break;
                 }
 
-                (short die1, short die2) dice = crapslib.roll();
-                Console.Write((dice.die1 + dice.die2).ToString().PadLeft(3));
+                var dice = game.Roll();
+                Console.Write((dice.Die1 + dice.Die2).ToString().PadLeft(3));
 
                 foreach (IBet bet in bets) {
                     if (bet.Bet == 0)
@@ -50,7 +50,7 @@ namespace craps_simulator {
                     ProcessResult(bet.Bet, result, ref bankroll, ref housetake, ref winners, ref losers);
                 }
 
-                if (game.Phase == PhaseType.On && dice.die1 + dice.die2 == 7) {
+                if (game.Phase == PhaseType.On && dice.Die1 + dice.Die2 == 7) {
                     Console.Write("  $ "+bets.Sum(b => b.SessionResult).ToString());
                     Console.WriteLine("");
                     Console.Write("New Roller:");
@@ -58,15 +58,15 @@ namespace craps_simulator {
                 }
 
                 if (game.Phase == PhaseType.Off &&
-                    (dice.die1 + dice.die2 == 4 ||
-                    dice.die1 + dice.die2 == 5 ||
-                    dice.die1 + dice.die2 == 6 ||
-                    dice.die1 + dice.die2 == 8 ||
-                    dice.die1 + dice.die2 == 9 ||
-                    dice.die1 + dice.die2 == 10)) {
+                    (dice.Die1 + dice.Die2 == 4 ||
+                    dice.Die1 + dice.Die2 == 5 ||
+                    dice.Die1 + dice.Die2 == 6 ||
+                    dice.Die1 + dice.Die2 == 8 ||
+                    dice.Die1 + dice.Die2 == 9 ||
+                    dice.Die1 + dice.Die2 == 10)) {
 
                     game.Off();
-                    game.Point = (short)(dice.die1 + dice.die2);
+                    game.Point = (short)(dice.Die1 + dice.Die2);
                     Console.Write("P");
                 }
             }

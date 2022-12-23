@@ -13,14 +13,18 @@ namespace craps_simulator.Bets {
 
         public string Name => $"Place {_spot}";
 
-        public IBetResult Result(Game game, (short die1, short die2) dice) {
+        public IBetResult Result(Game game, Dice dice) {
+
+            if (_spot == game.Point)
+                return new BetResult() { };
+
             if (game.Phase == PhaseType.Off)
                 return new BetResult() { };
 
-            var roll = dice.die1 + dice.die2;
-            var isCraps = roll == 7;
+            var roll = dice.Roll;
+            //var isCraps = roll == 7;
 
-            var isLoser = isCraps;
+            var isLoser = dice.IsCraps;
             var isWinner = roll == _spot;
 
             return base.Result(isWinner, isLoser, game.Point switch {

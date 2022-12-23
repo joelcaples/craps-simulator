@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace craps_simulator.Models {
-    internal class Dice {
+    public class Dice {
 
         private readonly short _die1;
         private readonly short _die2;
 
-        public Dice((short die1, short die2) dice) {
-            _die1 = dice.die1;
-            _die2 = dice.die2;
+        public Dice(short die1, short die2) {
+            _die1 = die1;
+            _die2 = die2;
         }
 
         public short Die1 { 

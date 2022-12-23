@@ -18,7 +18,7 @@ namespace craps_simulator.Bets {
             }
         }
 
-        public IBetResult Result(Game game, (short die1, short die2) dice) {
+        public IBetResult Result(Game game, Dice dice) {
 
             Func<Game, Dice, bool> IsWinner = (game, dice) => {
                 var isWinner =
@@ -33,8 +33,8 @@ namespace craps_simulator.Bets {
             };
 
             return base.Result(
-                IsWinner(game, new Dice(dice)),
-                IsLoser(game, new Dice(dice)),
+                IsWinner(game, dice),
+                IsLoser(game, dice),
                 game.Point switch {
                     4 or 10 => Lookups.TakeOddsFourAndTen,
                     5 or 9 => Lookups.TakeOddsFiveAndNine,

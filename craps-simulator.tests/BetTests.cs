@@ -1,4 +1,5 @@
 using craps_simulator.Bets;
+using craps_simulator.Models;
 
 namespace craps_simulator.tests {
     public class BetTests {
@@ -13,7 +14,7 @@ namespace craps_simulator.tests {
         public void Pass(PhaseType phase, short point, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
             var passLine = new Pass();
             passLine.PlaceBet(5);
-            var result = passLine.Result(new Game() { Phase=phase, Point = point }, new(die1, die2));
+            var result = passLine.Result(new Game() { Phase=phase, Point = point }, new Dice(die1, die2));
 
             Assert.Equal(expectedIsWinner, result.IsWinner);
             Assert.Equal(expectedIsLoser, result.IsLoser);

@@ -32,11 +32,11 @@ namespace craps_simulator.Bets {
             }
         }
 
-        public IBetResult Result(Game game, (short die1, short die2) dice) {
+        public IBetResult Result(Game game, Dice dice) {
 
-            var isHard = dice.die1 == _requiredDie && dice.die2 == _requiredDie;
-            var isCraps = dice.die1 + dice.die2 == 7;
-            var isSoft = dice.die1 + dice.die2 == _requiredDie*2 && (dice.die1 != _requiredDie || dice.die2 != _requiredDie);
+            var isHard = dice.Die1 == _requiredDie && dice.Die2 == _requiredDie;
+            var isCraps = dice.Die1 + dice.Die2 == 7;
+            var isSoft = dice.Die1 + dice.Die2 == _requiredDie*2 && (dice.Die1 != _requiredDie || dice.Die2 != _requiredDie);
 
             // Winner
             if (isHard) {

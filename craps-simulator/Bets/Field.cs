@@ -7,16 +7,16 @@ namespace craps_simulator.Bets {
 
         public string Name => $"Field";
 
-        public IBetResult Result(Game game, (short die1, short die2) dice) {
+        public IBetResult Result(Game game, Dice dice) {
 
             Func<Dice, bool> IsWinner = (dice) => (new List<int>() { 2, 3, 4, 9, 10, 11, 12 }).Contains(dice.Roll);
 
             Func<Dice, bool> IsLoser = (dice) => !IsWinner(dice);
 
             return base.Result(
-                IsWinner(new Dice(dice)),
-                IsLoser(new Dice(dice)),
-                new Dice(dice).Roll == 2 || new Dice(dice).Roll == 12 ? Lookups.FieldTwoOrTwelve : Lookups.Field);
+                IsWinner(dice),
+                IsLoser(dice),
+                dice.Roll == 2 || dice.Roll == 12 ? Lookups.FieldTwoOrTwelve : Lookups.Field);
 
         }
 
