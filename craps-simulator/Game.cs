@@ -28,10 +28,9 @@ namespace craps_simulator {
         public short Point {
             get => _point;
             set {
-                if ((new List<short>() { 0, 4, 5, 6, 8, 9, 10 }).Contains(value))
-                    _point = value;
-                else
-                    throw new Exception("Invalid Point");
+                if (!(new List<short>() { 0, 4, 5, 6, 8, 9, 10 }.Contains(_point)))
+                    throw new InvalidDataException();
+                _point = value;
             }
         }
 

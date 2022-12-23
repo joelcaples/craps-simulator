@@ -5,16 +5,35 @@ namespace craps_simulator.tests {
     public class BetTests {
 
         [Theory]
-        [InlineData(PhaseType.Off, 0, 6, 1, true, false, 5)] // Craps!
+        [InlineData(PhaseType.Off, 0, 6, 1, true, false, 5)] // Craps Win
+        [InlineData(PhaseType.Off, 0, 1, 1, false, true, 0)] // Comeout loss on 2
         [InlineData(PhaseType.Off, 0, 2, 1, false, true, 0)] // Comeout loss on 3
         [InlineData(PhaseType.Off, 0, 6, 6, false, true, 0)] // Comeout loss on 12
-        [InlineData(PhaseType.On, 4, 6, 1, false, true, 0)]  // Craps 7
+        [InlineData(PhaseType.On, 4, 6, 1, false, true, 0)]  // Craps Lose
         [InlineData(PhaseType.On, 4, 1, 1, false, false, 0)] // Point was not hit
         [InlineData(PhaseType.On, 4, 3, 1, true, false, 5)]  // Point was hit
         public void Pass(PhaseType phase, short point, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
             var passLine = new Pass();
             passLine.PlaceBet(5);
             var result = passLine.Result(new Game() { Phase=phase, Point = point }, new Dice(die1, die2));
+
+            Assert.Equal(expectedIsWinner, result.IsWinner);
+            Assert.Equal(expectedIsLoser, result.IsLoser);
+            Assert.Equal(expectedPays, result.Pays);
+        }
+
+        [Theory]
+        [InlineData(PhaseType.Off, 0, 6, 1, true, false, 5)] // Craps Win
+        [InlineData(PhaseType.Off, 0, 1, 1, false, true, 0)] // Comeout loss on 2
+        [InlineData(PhaseType.Off, 0, 2, 1, false, true, 0)] // Comeout loss on 3
+        [InlineData(PhaseType.Off, 0, 6, 6, false, true, 0)] // Comeout loss on 12
+        [InlineData(PhaseType.On, 4, 6, 1, false, true, 0)]  // Craps Lose
+        [InlineData(PhaseType.On, 4, 1, 1, false, false, 0)] // Point was not hit
+        [InlineData(PhaseType.On, 4, 3, 1, true, false, 5)]  // Point was hit
+        public void Come(PhaseType phase, short point, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
+            var come = new Come() { Point = point};
+            come.PlaceBet(5);
+            var result = come.Result(new Game() { Phase = phase }, new Dice(die1, die2));
 
             Assert.Equal(expectedIsWinner, result.IsWinner);
             Assert.Equal(expectedIsLoser, result.IsLoser);
