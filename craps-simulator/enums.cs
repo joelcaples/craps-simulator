@@ -9,4 +9,22 @@ namespace craps_simulator {
         On,
         Off
     }
+
+    public enum BetType {
+        HardFour,
+        HardSix,
+        HardEight,
+        HardTen,
+        Come,
+        DoNotPass,
+        Field,
+        Pass,
+        PlaceFour,
+        PlaceFive,
+        PlaceSix,
+        PlaceEight,
+        PlaceNine,
+        PlaceTen,
+        TakeOdds          
+    }
 }

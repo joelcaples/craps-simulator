@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craps-simulator", "craps-simulator\craps-simulator.csproj", "{4300165C-559D-4CCD-A5D7-C10B92A20BB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "craps-simulator", "craps-simulator\craps-simulator.csproj", "{4300165C-559D-4CCD-A5D7-C10B92A20BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craps-simulator.tests", "craps-simulator.tests\craps-simulator.tests.csproj", "{476774FF-A252-4E7F-AE11-2E630C3DBC65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "craps-simulator.tests", "craps-simulator.tests\craps-simulator.tests.csproj", "{476774FF-A252-4E7F-AE11-2E630C3DBC65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craps-simulator.service", "craps-simulator.service\craps-simulator.service.csproj", "{F040F1A0-B410-452C-943D-1CB9A0D20D43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{476774FF-A252-4E7F-AE11-2E630C3DBC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{476774FF-A252-4E7F-AE11-2E630C3DBC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{476774FF-A252-4E7F-AE11-2E630C3DBC65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F040F1A0-B410-452C-943D-1CB9A0D20D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F040F1A0-B410-452C-943D-1CB9A0D20D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F040F1A0-B410-452C-943D-1CB9A0D20D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F040F1A0-B410-452C-943D-1CB9A0D20D43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

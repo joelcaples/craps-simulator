@@ -12,11 +12,9 @@ namespace craps_simulator.Bets {
 
     public class TakeOdds : _Bet, IBet {
 
-        public string Name {
-            get {
-                return "Odds";
-            }
-        }
+        public string Name => $"Take Odds";
+
+        public BetType Type => BetType.TakeOdds;
 
         public IBetResult Result(Game game, Dice dice) {
 

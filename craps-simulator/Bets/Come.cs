@@ -5,11 +5,8 @@ using System.Collections;
 namespace craps_simulator.Bets {
     public class Come : _Bet, IBet {
 
-        public string Name {
-            get {
-                return "Come";
-            }
-        }
+        public string Name => "Come";
+        public BetType Type => BetType.Come;
 
         private short _point;
 

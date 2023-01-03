@@ -5,11 +5,8 @@ using System.Collections;
 namespace craps_simulator.Bets {
     public class Pass : _Bet, IBet {
 
-        public string Name {
-            get {
-                return "Pass";
-            }
-        }
+        public string Name => "Pass";
+        public BetType Type => BetType.Pass;
 
         public IBetResult Result(Game game, Dice dice) {
 

@@ -8,6 +8,7 @@ namespace craps_simulator.Bets
                 return "Hard Four";
             }
         }
+        public BetType Type => BetType.HardFour;
         public HardFour() :base(4) { }
     }
 }

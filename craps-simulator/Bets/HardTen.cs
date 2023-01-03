@@ -9,6 +9,7 @@ namespace craps_simulator.Bets
                 return "Hard Ten";
             }
         }
+        public BetType Type => BetType.HardTen;
 
         public override int Bet {
             get {

@@ -8,6 +8,7 @@ namespace craps_simulator.Bets
                 return "Hard Six";
             }
         }
+        public BetType Type => BetType.HardSix;
         public HardSix() :base(6) { }
     }
 }

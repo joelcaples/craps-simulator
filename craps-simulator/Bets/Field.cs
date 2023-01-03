@@ -6,6 +6,7 @@ namespace craps_simulator.Bets {
     public class Field : _Bet, IBet {
 
         public string Name => $"Field";
+        public BetType Type => BetType.Field;
 
         public IBetResult Result(Game game, Dice dice) {
 

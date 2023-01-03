@@ -12,6 +12,14 @@ namespace craps_simulator.Bets {
         }
 
         public string Name => $"Place {_spot}";
+        public BetType Type => _spot switch { 
+            4 => BetType.PlaceFour,
+            5 => BetType.PlaceFive,
+            6 => BetType.PlaceSix,
+            8 => BetType.PlaceEight,
+            9 => BetType.PlaceNine,
+            10 => BetType.PlaceTen,
+            _ => throw new InvalidDataException() };
 
         public IBetResult Result(Game game, Dice dice) {
 

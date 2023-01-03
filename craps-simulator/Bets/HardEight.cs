@@ -8,6 +8,7 @@ namespace craps_simulator.Bets
                 return "Hard Eight";
             }
         }
+        public BetType Type => BetType.HardEight;
         public HardEight() :base(8) { }
     }
 }

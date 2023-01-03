@@ -4,11 +4,8 @@ using craps_simulator.Models;
 namespace craps_simulator.Bets {
     public class DoNotPass : _Bet, IBet {
 
-        public string Name {
-            get {
-                return "Don't Pass Line";
-            }
-        }
+        public string Name => "Don't Pass";
+        public BetType Type => BetType.DoNotPass;
 
         public IBetResult Result(Game game, Dice dice) {
 
