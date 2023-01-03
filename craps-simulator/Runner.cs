@@ -1,6 +1,6 @@
 ﻿using craps_simulator.Bets;
 using craps_simulator.Interfaces;
-using craps_simulator.Models;
+using craps_simulator.Lib;
 
 namespace craps_simulator {
 
@@ -39,7 +39,7 @@ namespace craps_simulator {
                     break;
                 }
 
-                var dice = game.Roll();
+                var dice = GameLib.Roll();
                 Console.Write((dice.Die1 + dice.Die2).ToString().PadLeft(3));
 
                 foreach (IBet bet in bets) {

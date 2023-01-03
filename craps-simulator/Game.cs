@@ -33,14 +33,6 @@ namespace craps_simulator {
                 _point = value;
             }
         }
-
-        public Dice Roll() {
-            var upperBound = 6;
-            var die1 = RandomNumberGenerator.GetInt32(upperBound) + 1;
-            var die2 = RandomNumberGenerator.GetInt32(upperBound) + 1;
-
-            return new Dice((short)die1, (short)die2);
-        }
     }
 
 }

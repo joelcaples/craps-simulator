@@ -22,7 +22,7 @@ namespace craps_simulator.service.Controllers {
                 throw new InvalidDataException();
 
             var response = new ResponseDto();
-            response.Dice = request.Game.Roll();
+            response.Dice = GameLib.Roll();
 
             if (request.Bets != null)
                 foreach (BetDto bet in request.Bets) {

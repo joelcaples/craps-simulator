@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,12 +28,20 @@ namespace craps_simulator.Lib {
             if (game.Phase == PhaseType.Off &&
                 new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(dice.Roll)) {
                 return new Game {
-                    Point = (short)(dice.Die1 + dice.Die2)
+                    Point = (short)(dice.Roll)
                 };
                 //Console.Write("P");
             }
 
             return game;
+        }
+
+        public static Dice Roll() {
+            var upperBound = 6;
+            var die1 = RandomNumberGenerator.GetInt32(upperBound) + 1;
+            var die2 = RandomNumberGenerator.GetInt32(upperBound) + 1;
+
+            return new Dice((short)die1, (short)die2);
         }
     }
 }
