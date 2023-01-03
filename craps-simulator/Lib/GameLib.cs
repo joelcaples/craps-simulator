@@ -14,19 +14,19 @@ namespace craps_simulator.Lib {
                 //Console.Write("  $ " + bets.Sum(b => b.SessionResult).ToString());
                 //Console.WriteLine("");
                 //Console.Write("New Roller:");
-                game = new Game();
+                return new Game();
             }
 
             if (game.Phase == PhaseType.On && dice.Roll == game.Point) {
                 //Console.Write("  $ " + bets.Sum(b => b.SessionResult).ToString());
                 //Console.WriteLine("");
                 //Console.Write("New Roller:");
-                game = new Game();
+                return new Game();
             }
 
             if (game.Phase == PhaseType.Off &&
                 new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(dice.Roll)) {
-                game = new Game {
+                return new Game {
                     Point = (short)(dice.Die1 + dice.Die2)
                 };
                 //Console.Write("P");
