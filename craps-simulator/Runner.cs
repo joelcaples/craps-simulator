@@ -11,7 +11,7 @@ namespace craps_simulator {
 
         public static void Go() {
             Go(new List<IBet>() {
-                //new Pass(),// { Bet=5},
+                new Pass(),// { Bet=5},
                 new HardTen(),
                 //new HardFour(),
                 //new HardEight(),
@@ -32,7 +32,6 @@ namespace craps_simulator {
 
             var game = new Game();
 
-            //int winloss = 0;
             int iteration = 0;
             bool exitLoop = false;
 
@@ -63,7 +62,6 @@ namespace craps_simulator {
                         PlaceBet(betInfo.Bet, 5, ref bankroll);
 
                     var result = betInfo.Bet.Result(game, dice);
-                    //ProcessOverall(bet.Bet, result, ref bankroll, ref housetake, ref winners, ref losers);
 
                     var netResult = 0;
                     if(result.IsWinner) {
@@ -80,26 +78,6 @@ namespace craps_simulator {
                     housetake -= netResult;
                     betInfo.SessionNet += netResult;
                     betInfo.TotalNet += netResult;
-                    //sessionTotal. += netResult;
-                    //totalTotal += netResult;
-
-                    //if (result.IsWinner) {
-                    //    bankroll += (int)Math.Round(bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
-                    //    housetake -= (int)Math.Round(bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
-                    //    winners++;
-                    //}
-
-                    //if (result.IsLoser) {
-                    //    bankroll -= bet.Bet;
-                    //    housetake += bet.Bet;
-                    //    losers++;
-                    //}
-
-                    //if (result.IsWinner)
-                    //    winloss += (int)Math.Round(bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
-
-                    //if (result.IsLoser)
-                    //    winloss -= 5;
                 }
 
                 var throwResult = GameLib.Advance(game, dice);
@@ -107,7 +85,6 @@ namespace craps_simulator {
                 LogResult(throwResult, dice, betNets.Sum(bi => bi.SessionNet));
 
                 if (throwResult.IsLoser) {
-                    //winloss = 0;
                     exitLoop = iteration >= maxIterations;
                     for (int i = 0; i < betNets.Count; ++i) {
                         betNets[i].SessionNet = 0;
@@ -134,26 +111,10 @@ namespace craps_simulator {
             bankroll -= amt;
         }
 
-        //private static void ProcessOverall(int bet, IBetResult betResult, ref int bankroll, ref int housetake, ref int winners, ref int losers) {
-        //    if (betResult.IsWinner) {
-        //        bankroll += (int)Math.Round(bet * betResult.Pays, 0, MidpointRounding.ToZero);
-        //        housetake -= (int)Math.Round(bet * betResult.Pays, 0, MidpointRounding.ToZero);
-        //        winners++;
-        //    }
-
-        //    if (betResult.IsLoser) {
-        //        bankroll -= bet;
-        //        housetake += bet;
-        //        losers++;
-        //    }
-        //}
-
         private static void LogResult(ThrowResult throwResult, Dice dice, int winLoss) {
 
             if (throwResult.IsLoser) {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                //Console.Write(dice.Roll.ToString().PadRight(3));
-                //Console.Write((dice.Die1.ToString() + dice.Die2.ToString()).PadRight(3));
                 LogRoll(dice);
                 Console.ForegroundColor = winLoss > 0 ? ConsoleColor.Green : winLoss < 0 ? ConsoleColor.Red : ConsoleColor.DarkGray;
                 Console.Write($"{winLoss:C}");
@@ -163,16 +124,12 @@ namespace craps_simulator {
 
             if (throwResult.IsWinner) {
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-                //Console.Write(dice.Roll.ToString().PadRight(3));
-                //Console.Write((dice.Die1.ToString() + dice.Die2.ToString()).PadRight(3));
                 LogRoll(dice);
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
             if (throwResult.PointWasSet) {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                //Console.Write(dice.Roll.ToString().PadRight(3));
-                //Console.Write((dice.Die1.ToString() + dice.Die2.ToString()).PadRight(3));
                 LogRoll(dice);
                 Console.ForegroundColor = ConsoleColor.White;
             }
