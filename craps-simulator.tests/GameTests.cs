@@ -1,5 +1,6 @@
 ﻿using craps_simulator.Lib.Lib;
 using craps_simulator.Lib.Models;
+using System;
 
 namespace craps_simulator.tests {
 
@@ -34,6 +35,33 @@ namespace craps_simulator.tests {
             Assert.Equal(expectedIsWinner, throwResult.IsWinner);
             Assert.Equal(expectedIsLoser, throwResult.IsLoser);
             Assert.Equal(expectedPointWasSet, throwResult.PointWasSet);
+        }
+
+        [Fact]
+        public void OffTest() {
+            var game = new Game() { Point = 5 };
+            Assert.Equal(5, game.Point);
+            game.Off();
+            Assert.Equal(0, game.Point);
+        }
+
+        [Fact]
+        public void SetPointTest() {
+            var game = new Game() { Point = 5 };
+            Assert.Equal(5, game.Point);
+            game.Point = 6;
+            Assert.Equal(6, game.Point);
+        }
+
+        [Fact]
+        public void SetPointExceptionTest() {
+            var game = new Game() { Point = 5 };
+            Assert.Equal(5, game.Point);
+
+            var e = Record.Exception(() => {
+                game.Point = 2;
+            });
+            Assert.NotNull(e);
         }
     }
 }
