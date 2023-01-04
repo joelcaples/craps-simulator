@@ -1,6 +1,7 @@
 ﻿using craps_simulator.Bets;
 using craps_simulator.Interfaces;
 using craps_simulator.Lib;
+using craps_simulator.Models;
 
 namespace craps_simulator {
 
@@ -8,17 +9,17 @@ namespace craps_simulator {
 
         public void Go() {
             Go(new List<IBet>() { 
-                new Pass(),
-                new HardTen(),
-                new HardFour(),
-                new HardEight(),
-                new Place(4),
-                new Place(6),
-                new Place(9)
+                new Pass(),// { Bet=5},
+                //new HardTen(),
+                //new HardFour(),
+                //new HardEight(),
+                //new Place(4),
+                //new Place(6),
+                //new Place(9)
             });
         }
 
-        public void Go(IEnumerable<IBet> bets) {
+        public static void Go(IEnumerable<IBet> bets) {
 
             var winners = 0;
             var losers = 0;
@@ -27,11 +28,12 @@ namespace craps_simulator {
             int bankroll = initialBankRoll;
             int housetake = 0;
 
-            foreach(IBet bet in bets)
-                PlaceBet(bet, bet.Bet, ref bankroll);
+            //foreach (IBet bet in bets)
+            //    PlaceBet(bet, 5, ref bankroll);
 
             var game = new Game();
 
+            int winloss = 0;
             for (int i = 0; i < iterations; i++) {
 
                 if (bankroll == 0) {
@@ -40,16 +42,52 @@ namespace craps_simulator {
                 }
 
                 var dice = GameLib.Roll();
-                Console.Write((dice.Die1 + dice.Die2).ToString().PadLeft(3));
 
                 foreach (IBet bet in bets) {
+                    //PlaceBet(bet, bet.Bet, ref bankroll);
                     if (bet.Bet == 0)
                         PlaceBet(bet, 5, ref bankroll);
 
                     var result = bet.Result(game, dice);
-                    ProcessResult(bet.Bet, result, ref bankroll, ref housetake, ref winners, ref losers);
+                    ProcessOverall(bet.Bet, result, ref bankroll, ref housetake, ref winners, ref losers);
+
+                    if (result.IsWinner)
+                        winloss += bet.Bet * result.Pays;
+
+                    if (result.IsLoser)
+                        winloss -= bet.Bet;
+
+                    //winloss += result. //(int)bets.Sum(b => b.SessionResult);
                 }
 
+                var throwResult = GameLib.Advance(game, dice);
+
+                if (throwResult.IsLoser) {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write(dice.Roll.ToString().PadRight(3));
+                    Console.ForegroundColor = winloss >= 0 ? ConsoleColor.Green : ConsoleColor.Red;
+                    Console.Write($"$ {winloss}");
+                    winloss = 0;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine();
+                    //winloss = 0;
+                }
+
+                if (throwResult.IsWinner) {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write(dice.Roll.ToString().PadRight(3));
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+                if (throwResult.PointWasSet) {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(dice.Roll.ToString().PadRight(3));
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+                game = throwResult.Game;
+
+                /*                
                 if (game.Phase == PhaseType.On && dice.Die1 + dice.Die2 == 7) {
                     Console.Write("  $ "+bets.Sum(b => b.SessionResult).ToString());
                     Console.WriteLine("");
@@ -69,6 +107,7 @@ namespace craps_simulator {
                     game.Point = (short)(dice.Die1 + dice.Die2);
                     Console.Write("P");
                 }
+                */
             }
 
             foreach (IBet bet in bets)
@@ -84,10 +123,8 @@ namespace craps_simulator {
             //Console.WriteLine($"Losers:{losers}");
             //Console.WriteLine($"Win %:{winpct}");
 
-            foreach (IBet bet in bets) {
+            foreach (IBet bet in bets)
                 Console.WriteLine($"{ bet.Name} Winnings: ${bet.SessionResult}");
-            }
-
 
             if (winnings >= 0)
                 Console.WriteLine($"You Won $:{winnings:C}");
@@ -96,7 +133,7 @@ namespace craps_simulator {
                 Console.WriteLine($"You Lost $:{winnings * -1:C}");
         }
 
-        private void PlaceBet(IBet bet, int amt, ref int bankroll) {
+        private static void PlaceBet(IBet bet, int amt, ref int bankroll) {
             if (bankroll < amt)
                 return;
 
@@ -104,14 +141,15 @@ namespace craps_simulator {
             bankroll -= amt;
         }
 
-        private void ProcessResult(int bet, IBetResult betResult, ref int bankroll, ref int housetake, ref int winners, ref int losers) {
+        private static void ProcessOverall(int bet, IBetResult betResult, ref int bankroll, ref int housetake, ref int winners, ref int losers) {
             if (betResult.IsWinner) {
-                bankroll += betResult.Pays;
+                bankroll += bet * betResult.Pays;
                 housetake -= bet * betResult.Pays;
                 winners++;
             }
 
             if (betResult.IsLoser) {
+                bankroll -= bet;
                 housetake += bet;
                 losers++;
             }

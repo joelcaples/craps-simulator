@@ -9,19 +9,20 @@ using System.Threading.Tasks;
 namespace craps_simulator.Lib {
     public class GameLib {
 
+        /*        
         public static Game Advance(Game game, Dice dice) {
 
             if (game.Phase == PhaseType.On && dice.Roll == 7) {
                 //Console.Write("  $ " + bets.Sum(b => b.SessionResult).ToString());
                 //Console.WriteLine("");
-                //Console.Write("New Roller:");
+                //Console.Write("Craps Out -- New Roller:");
                 return new Game();
             }
 
             if (game.Phase == PhaseType.On && dice.Roll == game.Point) {
                 //Console.Write("  $ " + bets.Sum(b => b.SessionResult).ToString());
                 //Console.WriteLine("");
-                //Console.Write("New Roller:");
+                //Console.Write("Winner!");
                 return new Game();
             }
 
@@ -35,6 +36,52 @@ namespace craps_simulator.Lib {
 
             return game;
         }
+        */
+
+        public static ThrowResult Advance(Game game, Dice dice) {
+
+            if (game.Phase == PhaseType.Off && dice.Roll == 7) {
+                return new ThrowResult(new Game()) {
+                    IsWinner = true,
+                    Msg = "Craps Winner!"
+                };
+            }
+
+            if (game.Phase == PhaseType.On && dice.Roll == 7) {
+                //Console.Write("  $ " + bets.Sum(b => b.SessionResult).ToString());
+                //Console.WriteLine("");
+                //Console.Write("Craps Out -- New Roller:");
+                //return new Game();
+                return new ThrowResult(new Game()) {
+                    IsLoser = true,
+                    Msg = "Craps Out"
+                };
+            }
+
+            if (game.Phase == PhaseType.On && dice.Roll == game.Point) {
+                //Console.Write("  $ " + bets.Sum(b => b.SessionResult).ToString());
+                //Console.WriteLine("");
+                //Console.Write("Winner!");
+                return new ThrowResult(new Game()) {
+                    IsWinner = true,
+                    //Msg = "Pass-Line Winner!"
+                };
+            }
+
+            if (game.Phase == PhaseType.Off &&
+                new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(dice.Roll)) {
+                return new ThrowResult(new Game {
+                    Point = dice.Roll
+                }) {
+                    PointWasSet = true,
+                    Msg = "Point Set"
+                };
+                //Console.Write("P");
+            }
+
+            return new ThrowResult(game) { };
+        }
+
 
         public static Dice Roll() {
             var upperBound = 6;

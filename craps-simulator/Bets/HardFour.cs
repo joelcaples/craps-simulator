@@ -3,11 +3,7 @@
 namespace craps_simulator.Bets
 {
     public class HardFour : _Hardway, IBet {
-        public string Name {
-            get {
-                return "Hard Four";
-            }
-        }
+        public string Name => "Hard Four";
         public BetType Type => BetType.HardFour;
         public HardFour() :base(4) { }
     }

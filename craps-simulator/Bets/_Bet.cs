@@ -11,6 +11,9 @@ namespace craps_simulator.Bets {
             get {
                 return _bet;
             }
+            //set { 
+            //    _bet = value;
+            //}
         }
 
         public void PlaceBet(int bet) {
@@ -23,7 +26,7 @@ namespace craps_simulator.Bets {
             }
         }
 
-        protected IBetResult Result(bool isWinner, bool isLoser, ExpectedEdge edge) {
+        protected IBetResult Result(bool isWinner, bool isLoser, ExpectedEdge edge, string msg = "") {
             if (isWinner) {
                 _sessionResult += _bet;
                 return new BetResult() { IsWinner = true, Bet = _bet, Pays = (int)Math.Round(_bet * edge.Pays, 0, MidpointRounding.ToZero) };
@@ -31,11 +34,12 @@ namespace craps_simulator.Bets {
             
             if (isLoser) {
                 _sessionResult -= _bet;
-                _bet = 0;
+                //_bet = 0;
                 return new BetResult() { IsLoser = true, Bet = _bet, Pays = 0 };
             }
 
-            return new BetResult() { Pays = 0 };
+            return new BetResult() { Pays = 0, Msg = msg};
         }
+
     }
 }

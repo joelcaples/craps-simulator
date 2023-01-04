@@ -21,8 +21,9 @@ namespace craps_simulator.service.Controllers {
             if (request.Game == null)
                 throw new InvalidDataException();
 
-            var response = new ResponseDto();
-            response.Dice = GameLib.Roll();
+            var response = new ResponseDto {
+                Dice = GameLib.Roll()
+            };
 
             if (request.Bets != null)
                 foreach (BetDto bet in request.Bets) {
@@ -48,7 +49,7 @@ namespace craps_simulator.service.Controllers {
                     response.BetResults.Add(actualBet.Result(request.Game, response.Dice));
                 }
 
-            response.Game = GameLib.Advance(request.Game, response.Dice);
+            response.Game = GameLib.Advance(request.Game, response.Dice).Game;
 
             return response;
         }

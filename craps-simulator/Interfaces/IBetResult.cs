@@ -4,5 +4,6 @@
         bool IsWinner { get; set; }
         bool IsLoser { get; set; }
         int Pays { get; set; }
+        string Msg { get; set; }
     }
 }

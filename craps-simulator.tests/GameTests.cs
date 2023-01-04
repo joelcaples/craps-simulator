@@ -23,8 +23,8 @@ namespace craps_simulator.tests {
         [InlineData(5, 6, 6, PhaseType.On)] // Point was not hit (12)
         [InlineData(5, 3, 4, PhaseType.Off)] // Craps 7
         public void AdvanceTest(short point, short die1, short die2, PhaseType expectedPhase) {
-            var game = GameLib.Advance(new Game() { Point = point }, new Models.Dice(die1, die2));
-            Assert.Equal(expectedPhase, game.Phase);
+            var throwResult = GameLib.Advance(new Game() { Point = point }, new Models.Dice(die1, die2));
+            Assert.Equal(expectedPhase, throwResult.Game.Phase);
         }
     }
 }
