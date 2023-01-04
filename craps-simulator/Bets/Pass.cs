@@ -27,11 +27,11 @@ namespace craps_simulator.Bets {
             if (game.Phase == PhaseType.Off && new List<short>() { 2, 3, 12 }.Contains(dice.Roll))
                 result = (false, true, "Craps Loser");
 
-            return base.Result(
-                result.IsWinner,
-                result.IsLoser,
-                Lookups.Pass,
-                result.Msg);
+            return new BetResult() {
+                IsWinner = result.IsWinner,
+                IsLoser = result.IsLoser,
+                Pays = Lookups.Pass.Pays
+            };
         }
     }
 }

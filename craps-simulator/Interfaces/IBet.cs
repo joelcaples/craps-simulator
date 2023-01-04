@@ -9,6 +9,5 @@ namespace craps_simulator.Interfaces
         public int Bet { get; }
         void PlaceBet(int bet);
         public IBetResult Result(Game game, Dice dice);
-        public decimal SessionResult { get; }
     }
 }

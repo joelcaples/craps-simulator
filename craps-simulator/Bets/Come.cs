@@ -42,10 +42,11 @@ namespace craps_simulator.Bets {
                 new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(dice.Roll))
                 _point = dice.Roll;
 
-            return base.Result(
-                isWinner,
-                isLoser,
-                Lookups.Pass);
+            return new BetResult() { 
+                IsLoser = isLoser,
+                IsWinner = isWinner, 
+                Pays = Lookups.Pass.Pays 
+            };
         }
     }
 }

@@ -1,14 +1,16 @@
 ﻿using craps_simulator.Bets;
+using craps_simulator.dto;
 using craps_simulator.Interfaces;
 using craps_simulator.Lib;
 using craps_simulator.Models;
+using Microsoft.VisualBasic;
 
 namespace craps_simulator {
 
     internal class Runner {
 
-        public void Go() {
-            Go(new List<IBet>() { 
+        public static void Go() {
+            Go(new List<IBet>() {
                 new Pass(),// { Bet=5},
                 //new HardTen(),
                 //new HardFour(),
@@ -23,18 +25,22 @@ namespace craps_simulator {
 
             var winners = 0;
             var losers = 0;
-            var iterations = 100;
+            var maxIterations = 100;
             int initialBankRoll = 1000;
             int bankroll = initialBankRoll;
             int housetake = 0;
 
-            //foreach (IBet bet in bets)
-            //    PlaceBet(bet, 5, ref bankroll);
-
             var game = new Game();
 
-            int winloss = 0;
-            for (int i = 0; i < iterations; i++) {
+            //int winloss = 0;
+            int iteration = 0;
+            bool exitLoop = false;
+
+            var betNets = bets.Select(b => new BetNetDto() { Bet = b, SessionNet = 0, TotalNet = 0}).ToList();
+
+            while (!exitLoop) {
+                
+                ++iteration;
 
                 if (bankroll == 0) {
                     Console.WriteLine("BUSTED!");
@@ -43,94 +49,81 @@ namespace craps_simulator {
 
                 var dice = GameLib.Roll();
 
-                foreach (IBet bet in bets) {
-                    //PlaceBet(bet, bet.Bet, ref bankroll);
-                    if (bet.Bet == 0)
-                        PlaceBet(bet, 5, ref bankroll);
+                if (betNets == null)
+                    throw new InvalidDataException();
 
-                    var result = bet.Result(game, dice);
-                    ProcessOverall(bet.Bet, result, ref bankroll, ref housetake, ref winners, ref losers);
+                for(int i=0;i< betNets.Count;++i) {
 
-                    if (result.IsWinner)
-                        winloss += bet.Bet * result.Pays;
+                    var betInfo = betNets[i];
 
-                    if (result.IsLoser)
-                        winloss -= bet.Bet;
+                    if(betInfo.Bet == null)
+                        throw new InvalidDataException();
 
-                    //winloss += result. //(int)bets.Sum(b => b.SessionResult);
+                    if (betInfo.Bet.Bet == 0)
+                        PlaceBet(betInfo.Bet, 5, ref bankroll);
+
+                    var result = betInfo.Bet.Result(game, dice);
+                    //ProcessOverall(bet.Bet, result, ref bankroll, ref housetake, ref winners, ref losers);
+
+                    var netResult = 0;
+                    if(result.IsWinner) {
+                        netResult = (int)Math.Round(betInfo.Bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
+                        winners++;
+                    }
+
+                    if (result.IsLoser) {
+                        netResult = betInfo.Bet.Bet * -1;
+                        losers++;
+                    }
+
+                    bankroll += netResult;
+                    housetake -= netResult;
+                    betInfo.SessionNet += netResult;
+                    betInfo.TotalNet += netResult;
+                    //sessionTotal. += netResult;
+                    //totalTotal += netResult;
+
+                    //if (result.IsWinner) {
+                    //    bankroll += (int)Math.Round(bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
+                    //    housetake -= (int)Math.Round(bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
+                    //    winners++;
+                    //}
+
+                    //if (result.IsLoser) {
+                    //    bankroll -= bet.Bet;
+                    //    housetake += bet.Bet;
+                    //    losers++;
+                    //}
+
+                    //if (result.IsWinner)
+                    //    winloss += (int)Math.Round(bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
+
+                    //if (result.IsLoser)
+                    //    winloss -= 5;
                 }
 
                 var throwResult = GameLib.Advance(game, dice);
 
+                LogResult(throwResult, dice, betNets.Sum(bi => bi.SessionNet));
+
                 if (throwResult.IsLoser) {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.Write(dice.Roll.ToString().PadRight(3));
-                    Console.ForegroundColor = winloss >= 0 ? ConsoleColor.Green : ConsoleColor.Red;
-                    Console.Write($"$ {winloss}");
-                    winloss = 0;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine();
                     //winloss = 0;
-                }
-
-                if (throwResult.IsWinner) {
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.Write(dice.Roll.ToString().PadRight(3));
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-
-                if (throwResult.PointWasSet) {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write(dice.Roll.ToString().PadRight(3));
-                    Console.ForegroundColor = ConsoleColor.White;
+                    exitLoop = iteration >= maxIterations;
+                    for (int i = 0; i < betNets.Count; ++i) {
+                        betNets[i].SessionNet = 0;
+                    }
                 }
 
                 game = throwResult.Game;
-
-                /*                
-                if (game.Phase == PhaseType.On && dice.Die1 + dice.Die2 == 7) {
-                    Console.Write("  $ "+bets.Sum(b => b.SessionResult).ToString());
-                    Console.WriteLine("");
-                    Console.Write("New Roller:");
-                    game = new Game();
-                }
-
-                if (game.Phase == PhaseType.Off &&
-                    (dice.Die1 + dice.Die2 == 4 ||
-                    dice.Die1 + dice.Die2 == 5 ||
-                    dice.Die1 + dice.Die2 == 6 ||
-                    dice.Die1 + dice.Die2 == 8 ||
-                    dice.Die1 + dice.Die2 == 9 ||
-                    dice.Die1 + dice.Die2 == 10)) {
-
-                    game.Off();
-                    game.Point = (short)(dice.Die1 + dice.Die2);
-                    Console.Write("P");
-                }
-                */
             }
 
             foreach (IBet bet in bets)
                 bankroll += bet.Bet;
 
-            var winpct = Math.Round((float)winners / losers * 100, 2);
+            //var winpct = Math.Round((float)winners / losers * iteration, 2);
             var winnings = bankroll - initialBankRoll;
 
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine($"# of Rolls:{iterations}");
-            //Console.WriteLine($"Winners:{winners}");
-            //Console.WriteLine($"Losers:{losers}");
-            //Console.WriteLine($"Win %:{winpct}");
-
-            foreach (IBet bet in bets)
-                Console.WriteLine($"{ bet.Name} Winnings: ${bet.SessionResult}");
-
-            if (winnings >= 0)
-                Console.WriteLine($"You Won $:{winnings:C}");
-
-            if (winnings < 0)
-                Console.WriteLine($"You Lost $:{winnings * -1:C}");
+            LogTotals(iteration, betNets, winnings);
         }
 
         private static void PlaceBet(IBet bet, int amt, ref int bankroll) {
@@ -141,18 +134,60 @@ namespace craps_simulator {
             bankroll -= amt;
         }
 
-        private static void ProcessOverall(int bet, IBetResult betResult, ref int bankroll, ref int housetake, ref int winners, ref int losers) {
-            if (betResult.IsWinner) {
-                bankroll += bet * betResult.Pays;
-                housetake -= bet * betResult.Pays;
-                winners++;
+        //private static void ProcessOverall(int bet, IBetResult betResult, ref int bankroll, ref int housetake, ref int winners, ref int losers) {
+        //    if (betResult.IsWinner) {
+        //        bankroll += (int)Math.Round(bet * betResult.Pays, 0, MidpointRounding.ToZero);
+        //        housetake -= (int)Math.Round(bet * betResult.Pays, 0, MidpointRounding.ToZero);
+        //        winners++;
+        //    }
+
+        //    if (betResult.IsLoser) {
+        //        bankroll -= bet;
+        //        housetake += bet;
+        //        losers++;
+        //    }
+        //}
+
+        private static void LogResult(ThrowResult throwResult, Dice dice, int winLoss) {
+
+            if (throwResult.IsLoser) {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(dice.Roll.ToString().PadRight(3));
+                Console.ForegroundColor = winLoss > 0 ? ConsoleColor.Green : winLoss < 0 ? ConsoleColor.Red : ConsoleColor.DarkGray;
+                Console.Write($"{winLoss:C}");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
             }
 
-            if (betResult.IsLoser) {
-                bankroll -= bet;
-                housetake += bet;
-                losers++;
+            if (throwResult.IsWinner) {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.Write(dice.Roll.ToString().PadRight(3));
+                Console.ForegroundColor = ConsoleColor.White;
             }
+
+            if (throwResult.PointWasSet) {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(dice.Roll.ToString().PadRight(3));
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+
+        private static void LogTotals(int totalIterations, IEnumerable<BetNetDto> betNets, int winnings) {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine($"# of Rolls:{totalIterations}");
+            //Console.WriteLine($"Winners:{winners}");
+            //Console.WriteLine($"Losers:{losers}");
+            //Console.WriteLine($"Win %:{winpct}");
+
+            foreach (var betNet in betNets)
+                Console.WriteLine($"{betNet.Bet?.Name} Winnings: {betNet.TotalNet:C}");
+
+            if (winnings >= 0)
+                Console.WriteLine($"You Won: {winnings:C}");
+
+            if (winnings < 0)
+                Console.WriteLine($"You Lost: {winnings * -1:C}");
         }
     }
 }
