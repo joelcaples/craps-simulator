@@ -11,8 +11,8 @@ namespace craps_simulator {
 
         public static void Go() {
             Go(new List<IBet>() {
-                new Pass(),// { Bet=5},
-                //new HardTen(),
+                //new Pass(),// { Bet=5},
+                new HardTen(),
                 //new HardFour(),
                 //new HardEight(),
                 //new Place(4),
@@ -152,7 +152,9 @@ namespace craps_simulator {
 
             if (throwResult.IsLoser) {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.Write(dice.Roll.ToString().PadRight(3));
+                //Console.Write(dice.Roll.ToString().PadRight(3));
+                //Console.Write((dice.Die1.ToString() + dice.Die2.ToString()).PadRight(3));
+                LogRoll(dice);
                 Console.ForegroundColor = winLoss > 0 ? ConsoleColor.Green : winLoss < 0 ? ConsoleColor.Red : ConsoleColor.DarkGray;
                 Console.Write($"{winLoss:C}");
                 Console.ForegroundColor = ConsoleColor.White;
@@ -161,15 +163,23 @@ namespace craps_simulator {
 
             if (throwResult.IsWinner) {
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.Write(dice.Roll.ToString().PadRight(3));
+                //Console.Write(dice.Roll.ToString().PadRight(3));
+                //Console.Write((dice.Die1.ToString() + dice.Die2.ToString()).PadRight(3));
+                LogRoll(dice);
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
             if (throwResult.PointWasSet) {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(dice.Roll.ToString().PadRight(3));
+                //Console.Write(dice.Roll.ToString().PadRight(3));
+                //Console.Write((dice.Die1.ToString() + dice.Die2.ToString()).PadRight(3));
+                LogRoll(dice);
                 Console.ForegroundColor = ConsoleColor.White;
             }
+        }
+
+        private static void LogRoll(Dice dice) {
+            Console.Write($"{dice.Die1},{dice.Die2}".PadRight(5));
         }
 
         private static void LogTotals(int totalIterations, IEnumerable<BetNetDto> betNets, int winnings) {
