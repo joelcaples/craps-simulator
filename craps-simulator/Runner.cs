@@ -3,7 +3,6 @@ using craps_simulator.dto;
 using craps_simulator.Interfaces;
 using craps_simulator.Lib;
 using craps_simulator.Models;
-using Microsoft.VisualBasic;
 
 namespace craps_simulator {
 
@@ -25,7 +24,7 @@ namespace craps_simulator {
 
             var winners = 0;
             var losers = 0;
-            var maxIterations = 100;
+            var maxIterations = 5;
             int initialBankRoll = 1000;
             int bankroll = initialBankRoll;
             int housetake = 0;
@@ -38,8 +37,6 @@ namespace craps_simulator {
             var betNets = bets.Select(b => new BetNetDto() { Bet = b, SessionNet = 0, TotalNet = 0}).ToList();
 
             while (!exitLoop) {
-                
-                ++iteration;
 
                 if (bankroll == 0) {
                     Console.WriteLine("BUSTED!");
@@ -66,11 +63,13 @@ namespace craps_simulator {
                     var netResult = 0;
                     if(result.IsWinner) {
                         netResult = (int)Math.Round(betInfo.Bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
+                        //Console.Write("W  ");
                         winners++;
                     }
 
                     if (result.IsLoser) {
                         netResult = betInfo.Bet.Bet * -1;
+                        //Console.Write("L  ");
                         losers++;
                     }
 
@@ -85,6 +84,7 @@ namespace craps_simulator {
                 LogResult(throwResult, dice, betNets.Sum(bi => bi.SessionNet));
 
                 if (throwResult.IsLoser) {
+                    ++iteration;
                     exitLoop = iteration >= maxIterations;
                     for (int i = 0; i < betNets.Count; ++i) {
                         betNets[i].SessionNet = 0;
