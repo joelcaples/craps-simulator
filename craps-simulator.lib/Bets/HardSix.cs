@@ -1,6 +1,6 @@
-﻿using craps_simulator.Interfaces;
+﻿using craps_simulator.Lib.Interfaces;
 
-namespace craps_simulator.Bets
+namespace craps_simulator.Lib.Bets
 {
     public class HardSix : _Hardway, IBet {
         public string Name => "Hard Six";

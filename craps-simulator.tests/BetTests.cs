@@ -1,5 +1,5 @@
-using craps_simulator.Bets;
-using craps_simulator.Models;
+using craps_simulator.Lib.Bets;
+using craps_simulator.Lib.Models;
 
 namespace craps_simulator.tests {
     public class BetTests {

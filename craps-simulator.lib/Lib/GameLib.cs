@@ -1,13 +1,7 @@
-﻿using craps_simulator.Models;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
+﻿using craps_simulator.Lib.Models;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace craps_simulator.Lib {
+namespace craps_simulator.Lib.Lib {
     public class GameLib {
 
         /*        

@@ -1,8 +1,8 @@
-﻿using craps_simulator.Bets;
+﻿using craps_simulator.Lib.Bets;
 using craps_simulator.dto;
-using craps_simulator.Interfaces;
-using craps_simulator.Lib;
-using craps_simulator.Models;
+using craps_simulator.Lib.Interfaces;
+using craps_simulator.Lib.Models;
+using craps_simulator.Lib.Lib;
 
 namespace craps_simulator {
 

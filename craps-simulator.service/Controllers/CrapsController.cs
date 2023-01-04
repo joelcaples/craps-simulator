@@ -1,6 +1,6 @@
-using craps_simulator.Bets;
-using craps_simulator.Interfaces;
-using craps_simulator.Lib;
+using craps_simulator.Lib.Bets;
+using craps_simulator.Lib.Interfaces;
+using craps_simulator.Lib.Lib;
 using craps_simulator.service.dto;
 using Microsoft.AspNetCore.Mvc;
 

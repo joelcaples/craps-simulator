@@ -1,4 +1,4 @@
-﻿using craps_simulator.Models;
+﻿using craps_simulator.Lib.Models;
 using System.Drawing;
 using System.Security.Cryptography;
 

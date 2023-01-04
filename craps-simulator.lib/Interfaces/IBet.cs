@@ -1,6 +1,6 @@
-﻿using craps_simulator.Models;
+﻿using craps_simulator.Lib.Models;
 
-namespace craps_simulator.Interfaces
+namespace craps_simulator.Lib.Interfaces
 {
     public interface IBet {
 

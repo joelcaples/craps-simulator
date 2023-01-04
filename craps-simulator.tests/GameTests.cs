@@ -1,9 +1,5 @@
-﻿using craps_simulator.Lib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using craps_simulator.Lib.Lib;
+using craps_simulator.Lib.Models;
 
 namespace craps_simulator.tests {
 
@@ -32,7 +28,7 @@ namespace craps_simulator.tests {
             bool expectedIsLoser, 
             bool expectedPointWasSet) {
             
-            var throwResult = GameLib.Advance(new Game() { Point = point }, new Models.Dice(die1, die2));
+            var throwResult = GameLib.Advance(new Game() { Point = point }, new Dice(die1, die2));
             Assert.Equal(expectedPhase, throwResult.Game.Phase);
             Assert.Equal(expectedPoint, throwResult.Game.Point);
             Assert.Equal(expectedIsWinner, throwResult.IsWinner);

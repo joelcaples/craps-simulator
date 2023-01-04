@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace craps_simulator.Models {
+namespace craps_simulator.Lib.Models {
     public class ThrowResult {
 
         private readonly Game _game;

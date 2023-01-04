@@ -1,7 +1,7 @@
-﻿using craps_simulator.Interfaces;
-using craps_simulator.Models;
+﻿using craps_simulator.Lib.Interfaces;
+using craps_simulator.Lib.Models;
 
-namespace craps_simulator.Bets {
+namespace craps_simulator.Lib.Bets {
 
     /// <summary>
     /// It is called Taking the Odds if you bet on a point after a Pass bet. 

@@ -1,6 +1,6 @@
-﻿using craps_simulator.Interfaces;
+﻿using craps_simulator.Lib.Interfaces;
 
-namespace craps_simulator.Models {
+namespace craps_simulator.Lib.Models {
     internal class BetResult : IBetResult {
 
         public bool IsWinner { get; set; } = false;
