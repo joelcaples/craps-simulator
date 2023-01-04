@@ -62,7 +62,7 @@ namespace craps_simulator {
 
                     var netResult = 0;
                     if(result.IsWinner) {
-                        netResult = (int)Math.Round(betInfo.Bet.Bet * result.Pays, 0, MidpointRounding.ToZero);
+                        netResult = (int)Math.Round(result.Pays, 0, MidpointRounding.ToZero);
                         //Console.Write("W  ");
                         winners++;
                     }
@@ -120,19 +120,24 @@ namespace craps_simulator {
                 Console.Write($"{winLoss:C}");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
+                return;
             }
 
             if (throwResult.IsWinner) {
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 LogRoll(dice);
                 Console.ForegroundColor = ConsoleColor.White;
+                return;
             }
 
             if (throwResult.PointWasSet) {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 LogRoll(dice);
                 Console.ForegroundColor = ConsoleColor.White;
+                return;
             }
+
+            LogRoll(dice);
         }
 
         private static void LogRoll(Dice dice) {

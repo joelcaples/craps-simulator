@@ -17,7 +17,9 @@ namespace craps_simulator.Bets {
             return new BetResult() {
                 IsWinner = IsWinner(dice),
                 IsLoser = IsLoser(dice),
-                Pays = dice.Roll == 2 || dice.Roll == 12 ? Lookups.FieldTwoOrTwelve.Pays : Lookups.Field.Pays
+                Pays = IsWinner(dice)
+                    ? this.Bet * (dice.Roll == 2 || dice.Roll == 12 ? Lookups.FieldTwoOrTwelve.Pays : Lookups.Field.Pays)
+                    : 0
             };
         }
     }

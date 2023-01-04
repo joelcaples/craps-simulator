@@ -21,15 +21,17 @@ namespace craps_simulator.Bets {
                 result = (true, false, "Pass-Line Winner");
 
             if (game.Phase == PhaseType.On && dice.Roll == 7)
-                result = (false, true, "Craps Loser");
+                result = (false, true, "Seven Out");
 
             if (game.Phase == PhaseType.Off && new List<short>() { 2, 3, 12 }.Contains(dice.Roll))
-                result = (false, true, "Craps Loser");
+                result = (false, true, "Crap Out");
 
             return new BetResult() {
                 IsWinner = result.IsWinner,
                 IsLoser = result.IsLoser,
-                Pays = Lookups.Pass.Pays
+                Pays = result.IsWinner
+                    ? this.Bet * Lookups.Pass.Pays
+                    : 0
             };
         }
     }

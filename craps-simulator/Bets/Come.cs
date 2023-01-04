@@ -42,7 +42,9 @@ namespace craps_simulator.Bets {
             return new BetResult() { 
                 IsLoser = isLoser,
                 IsWinner = isWinner, 
-                Pays = Lookups.Pass.Pays 
+                Pays = isWinner 
+                    ? this.Bet * Lookups.Pass.Pays 
+                    : 0
             };
         }
     }

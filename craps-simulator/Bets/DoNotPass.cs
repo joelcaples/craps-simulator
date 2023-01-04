@@ -26,10 +26,15 @@ namespace craps_simulator.Bets {
                 return isWinner;
             };
 
+            var isWinner = IsWinner(game, dice);
+            var isLoser = IsLoser(game, dice);
+
             return new BetResult() {
-                IsWinner = IsWinner(game, dice),
-                IsLoser = IsLoser(game, dice),
-                Pays = Lookups.Pass.Pays
+                IsWinner = isWinner,
+                IsLoser = isLoser,
+                Pays = isWinner 
+                    ? this.Bet * Lookups.Pass.Pays
+                    : 0
             };
         }
     }

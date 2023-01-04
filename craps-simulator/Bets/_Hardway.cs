@@ -40,11 +40,10 @@ namespace craps_simulator.Bets {
 
             // Winner
             if (isHard) {
-
                 // Hard ten and hard four pay the same
                 return new BetResult() { 
                     IsWinner = true, 
-                    Pays = _pays 
+                    Pays = this.Bet * _pays
                 };
             }
 

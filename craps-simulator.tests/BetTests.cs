@@ -59,12 +59,12 @@ namespace craps_simulator.tests {
 
         [Theory]
         [InlineData(1, 1, true, false, 10)] // Win on 2
+        [InlineData(1, 2, true, false, 5)]  // Win on 3
+        [InlineData(1, 3, true, false, 5)]  // Win on 4
+        [InlineData(3, 6, true, false, 5)]  // Win on 9
+        [InlineData(4, 6, true, false, 5)]  // Win on 10
+        [InlineData(5, 6, true, false, 5)]  // Win on 11
         [InlineData(6, 6, true, false, 10)] // Win on 12
-        [InlineData(1, 2, true, false, 5)]  // Win on other than 3
-        [InlineData(1, 3, true, false, 5)]  // Win on other than 4
-        [InlineData(3, 6, true, false, 5)]  // Win on other than 9
-        [InlineData(4, 6, true, false, 5)]  // Win on other than 10
-        [InlineData(5, 6, true, false, 5)]  // Win on other than 11
         [InlineData(1, 4, false, true, 0)] // Lose on 5
         [InlineData(1, 5, false, true, 0)] // Lose on 6
         [InlineData(2, 5, false, true, 0)] // Lose on 7

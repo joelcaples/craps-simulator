@@ -29,16 +29,19 @@ namespace craps_simulator.Bets {
                 return isLoser;
             };
 
+            var isWinner = IsWinner(game, dice);
+            var isLoser = IsLoser(game, dice);
+
             return new BetResult() {
-                //Bet = this.Bet,
-                IsWinner = IsWinner(game, dice),
-                IsLoser = IsLoser(game, dice),
-                Pays = game.Point switch {
-                    4 or 10 => Lookups.TakeOddsFourAndTen.Pays,
-                    5 or 9 => Lookups.TakeOddsFiveAndNine.Pays,
-                    6 or 8 => Lookups.TakeOddsSixAndEight.Pays,
-                    _ => throw new Exception("Invalid Place Bet"),
-                }
+                IsWinner = isWinner,
+                IsLoser = isLoser,
+                Pays = isWinner
+                    ? this.Bet * game.Point switch {
+                        4 or 10 => Lookups.TakeOddsFourAndTen.Pays,
+                        5 or 9 => Lookups.TakeOddsFiveAndNine.Pays,
+                        6 or 8 => Lookups.TakeOddsSixAndEight.Pays,
+                        _ => throw new Exception("Invalid Place Bet") 
+                    } : 0
             };
         }
     }
