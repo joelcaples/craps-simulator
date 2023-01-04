@@ -15,14 +15,10 @@ namespace craps_simulator.Bets {
             Func<Dice, bool> IsLoser = (dice) => !IsWinner(dice);
 
             return new BetResult() {
-                Bet = this.Bet,
                 IsWinner = IsWinner(dice),
                 IsLoser = IsLoser(dice),
                 Pays = dice.Roll == 2 || dice.Roll == 12 ? Lookups.FieldTwoOrTwelve.Pays : Lookups.Field.Pays
             };
-
         }
-
-        //private decimal Pays(int roll) => (new List<int>() { 3, 4, 9, 10, 11 }).Contains(roll) ? base.Bet : base.Bet * 2;
     }
 }

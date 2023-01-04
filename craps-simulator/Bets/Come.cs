@@ -1,6 +1,5 @@
 ﻿using craps_simulator.Interfaces;
 using craps_simulator.Models;
-using System.Collections;
 
 namespace craps_simulator.Bets {
     public class Come : _Bet, IBet {
@@ -24,8 +23,6 @@ namespace craps_simulator.Bets {
                 return new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(_point) ? PhaseType.On : PhaseType.Off;
             }
         }
-
-
 
         public IBetResult Result(Game game, Dice dice) {
 

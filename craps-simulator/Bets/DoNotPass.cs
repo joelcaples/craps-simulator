@@ -27,7 +27,6 @@ namespace craps_simulator.Bets {
             };
 
             return new BetResult() {
-                Bet = this.Bet,
                 IsWinner = IsWinner(game, dice),
                 IsLoser = IsLoser(game, dice),
                 Pays = Lookups.Pass.Pays

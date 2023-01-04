@@ -35,7 +35,6 @@ namespace craps_simulator.Bets {
             var isWinner = roll == _spot;
 
             return new BetResult() {
-                Bet = this.Bet,
                 IsWinner = isWinner,
                 IsLoser = isLoser,
                 Pays = _spot switch {

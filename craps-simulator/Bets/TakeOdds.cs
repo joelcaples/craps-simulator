@@ -1,6 +1,5 @@
 ﻿using craps_simulator.Interfaces;
 using craps_simulator.Models;
-using System.Collections;
 
 namespace craps_simulator.Bets {
 
