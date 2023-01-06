@@ -16,6 +16,7 @@ namespace craps_simulator {
         HardEight,
         HardTen,
         Come,
+        DoNotCome,
         DoNotPass,
         Field,
         Pass,

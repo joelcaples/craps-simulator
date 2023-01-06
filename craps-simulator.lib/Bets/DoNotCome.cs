@@ -2,10 +2,10 @@
 using craps_simulator.Lib.Models;
 
 namespace craps_simulator.Lib.Bets {
-    public class Come : _Bet, IBet {
+    public class DoNotCome : _Bet, IBet {
 
-        public string Name => "Come";
-        public BetType Type => BetType.Come;
+        public string Name => "Don't Come";
+        public BetType Type => BetType.DoNotCome;
 
         private short _point;
 
@@ -27,13 +27,13 @@ namespace craps_simulator.Lib.Bets {
         public IBetResult Result(Game game, Dice dice) {
 
             var isWinner =
-                (this.Phase == PhaseType.Off && (dice.IsCraps || dice.IsYo)) ||
-                (this.Phase == PhaseType.On && dice.Roll == _point);
-
-            var isLoser =
-                (this.Phase == PhaseType.Off && 
+                (this.Phase == PhaseType.Off &&
                 new List<short>() { 2, 3, 12 }.Contains(dice.Roll)) ||
                 (this.Phase == PhaseType.On && dice.IsCraps);
+
+            var isLoser =
+                (this.Phase == PhaseType.Off && (dice.IsCraps || dice.IsYo)) ||
+                (this.Phase == PhaseType.On && dice.Roll == _point);
 
             if (game.Phase == PhaseType.Off && 
                 new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(dice.Roll))
@@ -43,7 +43,7 @@ namespace craps_simulator.Lib.Bets {
                 IsWinner = isWinner,
                 IsLoser = isLoser,
                 Pays = isWinner 
-                    ? this.Bet * Lookups.Come.Pays 
+                    ? this.Bet * Lookups.DoNotCome.Pays 
                     : 0
             };
         }

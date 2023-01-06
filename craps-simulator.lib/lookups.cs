@@ -51,6 +51,8 @@ namespace craps_simulator {
 
         public static ExpectedEdge Pass => new(null, I);
         public static ExpectedEdge DoNotPass => new(null,I);
+        public static ExpectedEdge Come => new(null, I);
+        public static ExpectedEdge DoNotCome => new(null, I);
         public static ExpectedEdge TakeOddsSixAndEight => new(null, VI/V);
         public static ExpectedEdge TakeOddsFiveAndNine => new(null, III/II);
         public static ExpectedEdge TakeOddsFourAndTen => new(null, II/I);
