@@ -8,6 +8,8 @@ namespace craps_simulator.Lib.Bets {
         private readonly short _spot;
 
         public Place(short spot) {
+            if (!new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(spot))
+                throw new InvalidDataException();
             _spot = spot;
         }
 

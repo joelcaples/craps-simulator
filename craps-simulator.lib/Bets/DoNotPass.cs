@@ -33,7 +33,7 @@ namespace craps_simulator.Lib.Bets {
                 IsWinner = isWinner,
                 IsLoser = isLoser,
                 Pays = isWinner 
-                    ? this.Bet * Lookups.Pass.Pays
+                    ? this.Bet * Lookups.DoNotPass.Pays
                     : 0
             };
         }
