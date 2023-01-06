@@ -9,23 +9,23 @@ namespace craps_simulator.Lib.Bets {
     /// In both cases the odds are statistically fair, with no house edge.
     /// </summary>
 
-    public class TakeOdds : _Bet, IBet {
+    public class LayOdds : _Bet, IBet {
 
-        public string Name => $"Take Odds";
+        public string Name => $"Lay Odds";
 
-        public BetType Type => BetType.TakeOdds;
+        public BetType Type => BetType.LayOdds;
 
         public IBetResult Result(Game game, Dice dice) {
 
-            Func<Game, Dice, bool> IsWinner = (game, dice) => {
+            Func<Game, Dice, bool> IsLoser = (game, dice) => {
                 var isWinner =
-                    (game.Phase == PhaseType.On && dice.Roll == game.Point);
+                    game.Phase == PhaseType.On && dice.Roll == 7;
                 return isWinner;
             };
 
-            Func<Game, Dice, bool> IsLoser = (game, dice) => {
+            Func<Game, Dice, bool> IsWinner = (game, dice) => {
                 var isLoser =
-                    game.Phase == PhaseType.On && dice.Roll == 7;
+                    (game.Phase == PhaseType.On && dice.Roll == game.Point);
                 return isLoser;
             };
 
@@ -37,10 +37,10 @@ namespace craps_simulator.Lib.Bets {
                 IsLoser = isLoser,
                 Pays = isWinner
                     ? this.Bet * game.Point switch {
-                        4 or 10 => Lookups.TakeOddsFourAndTen.Pays,
-                        5 or 9 => Lookups.TakeOddsFiveAndNine.Pays,
-                        6 or 8 => Lookups.TakeOddsSixAndEight.Pays,
-                        _ => throw new Exception("Invalid Take Odds Bet") 
+                        4 or 10 => Lookups.LayOddsFourAndTen.Pays,
+                        5 or 9 => Lookups.LayOddsFiveAndNine.Pays,
+                        6 or 8 => Lookups.LayOddsSixAndEight.Pays,
+                        _ => throw new Exception("Invalid Lay Odds Bet") 
                     } : 0
             };
         }

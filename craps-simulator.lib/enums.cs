@@ -25,6 +25,7 @@ namespace craps_simulator {
         PlaceEight,
         PlaceNine,
         PlaceTen,
-        TakeOdds          
+        TakeOdds,
+        LayOdds
     }
 }

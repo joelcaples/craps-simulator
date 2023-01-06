@@ -24,6 +24,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\craps-simulator.lib\craps-simulator.lib.csproj" />
+    <ProjectReference Include="..\craps-simulator.service\craps-simulator.service.csproj" />
+    <ProjectReference Include="..\craps-simulator\craps-simulator.csproj" />
   </ItemGroup>
 
 </Project>

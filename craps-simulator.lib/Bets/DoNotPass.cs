@@ -12,17 +12,17 @@ namespace craps_simulator.Lib.Bets {
             Func<Game, Dice, bool> IsLoser = (game, dice) => {
                 var isLoser =
                     (game.Phase == PhaseType.Off && (dice.IsCraps || dice.IsYo)) ||
-                    (game.Phase == PhaseType.On && dice.Die1 + dice.Die2 == game.Point);
+                    (game.Phase == PhaseType.On && dice.Roll == game.Point);
                 return isLoser;
             };
 
             Func<Game, Dice, bool> IsWinner = (game, dice) => {
                 var isWinner =
                     (game.Phase == PhaseType.Off && (
-                    dice.Die1 + dice.Die2 == 2 ||
-                    dice.Die1 + dice.Die2 == 3 ||
-                    dice.Die1 + dice.Die2 == 12)) ||
-                    (game.Phase == PhaseType.On && dice.Die1 + dice.Die2 == 7);
+                    dice.Roll == 2 ||
+                    dice.Roll == 3 ||
+                    dice.Roll == 12)) ||
+                    (game.Phase == PhaseType.On && dice.Roll == 7);
                 return isWinner;
             };
 

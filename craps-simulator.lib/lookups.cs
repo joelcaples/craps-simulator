@@ -54,9 +54,9 @@ namespace craps_simulator {
         public static ExpectedEdge TakeOddsSixAndEight => new(null, VI/V);
         public static ExpectedEdge TakeOddsFiveAndNine => new(null, III/II);
         public static ExpectedEdge TakeOddsFourAndTen => new(null, II/I);
-        //public static ExpectedEdge LayOddsSixAndEight => new(null, V/VI);
-        //public static ExpectedEdge LayOddsFiveAndNine => new(null, II/III);
-        //public static ExpectedEdge LayOddsFourAndTen => new(null, I/II);
+        public static ExpectedEdge LayOddsSixAndEight => new(null, V / VI);
+        public static ExpectedEdge LayOddsFiveAndNine => new(null, II / III);
+        public static ExpectedEdge LayOddsFourAndTen => new(null, I / II);
         //public static ExpectedEdge DoNotPlaceSixAndEight => new(null, IV/V);
         //public static ExpectedEdge DoNotPlace5And9 => new(null, V/VIII);
         //public static ExpectedEdge DoNotPlaceFourAndTen => new(null, V/XI);

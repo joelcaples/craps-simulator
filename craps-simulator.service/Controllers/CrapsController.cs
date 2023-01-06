@@ -5,6 +5,7 @@ using craps_simulator.service.dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace craps_simulator.service.Controllers {
+
     [ApiController]
     [Route("[controller]")]
     public class CrapsController : ControllerBase {
@@ -45,6 +46,7 @@ namespace craps_simulator.service.Controllers {
                         BetType.TakeOdds => new TakeOdds(),
                         _ => throw new InvalidDataException()
                     };
+
                     actualBet.PlaceBet(bet.Amount);
                     response.BetResults.Add(actualBet.Result(request.Game, response.Dice));
                 }

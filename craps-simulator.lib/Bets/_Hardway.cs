@@ -35,8 +35,8 @@ namespace craps_simulator.Lib.Bets {
         public IBetResult Result(Game game, Dice dice) {
 
             var isHard = dice.Die1 == _requiredDie && dice.Die2 == _requiredDie;
-            var isCraps = dice.Die1 + dice.Die2 == 7;
-            var isSoft = dice.Die1 + dice.Die2 == _requiredDie*2 && (dice.Die1 != _requiredDie || dice.Die2 != _requiredDie);
+            var isCraps = dice.Roll == 7;
+            var isSoft = dice.Roll == _requiredDie*2 && (dice.Die1 != _requiredDie || dice.Die2 != _requiredDie);
 
             // Winner
             if (isHard) {
