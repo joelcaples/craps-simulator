@@ -37,9 +37,9 @@ namespace craps_simulator.Lib.Bets {
                 IsLoser = isLoser,
                 Pays = isWinner
                     ? this.Bet * game.Point switch {
-                        4 or 10 => Lookups.LayOddsFourAndTen.Pays,
-                        5 or 9 => Lookups.LayOddsFiveAndNine.Pays,
-                        6 or 8 => Lookups.LayOddsSixAndEight.Pays,
+                        4 or 10 => Lookups.LayOddsFourOrTen.Pays,
+                        5 or 9 => Lookups.LayOddsFiveOrNine.Pays,
+                        6 or 8 => Lookups.LayOddsSixOrEight.Pays,
                         _ => throw new Exception("Invalid Lay Odds Bet") 
                     } : 0
             };

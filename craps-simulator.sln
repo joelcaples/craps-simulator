@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "craps-simulator.tests", "cr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "craps-simulator.service", "craps-simulator.service\craps-simulator.service.csproj", "{F040F1A0-B410-452C-943D-1CB9A0D20D43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craps-simulator.lib", "craps-simulator.lib\craps-simulator.lib.csproj", "{06E9E3F6-2CAF-46FE-9C6C-9964200F052D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "craps-simulator.lib", "craps-simulator.lib\craps-simulator.lib.csproj", "{06E9E3F6-2CAF-46FE-9C6C-9964200F052D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{FCC4DD9B-464D-4B95-BB57-898C22C015FD}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
