@@ -37,9 +37,9 @@ namespace craps_simulator.Lib.Bets {
             var isLoser = roll == _spot;
             var pays = isWinner
                     ? this.Bet * _spot switch {
-                        4 or 10 => Lookups.LayFourOrTen.Pays - (decimal)(this.Bet * .05),
-                        5 or 9 => Lookups.LayFiveOrNine.Pays - (decimal)(this.Bet * .05),
-                        6 or 8 => Lookups.LaySixOrEight.Pays - (decimal)(this.Bet * .05),
+                        4 or 10 => Lookups.LayFourOrTen.Pays,
+                        5 or 9 => Lookups.LayFiveOrNine.Pays,
+                        6 or 8 => Lookups.LaySixOrEight.Pays,
                         _ => throw new Exception("Invalid Lay Bet"),
                     }
                     : 0;

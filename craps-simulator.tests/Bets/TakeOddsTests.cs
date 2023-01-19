@@ -31,9 +31,9 @@ namespace craps_simulator.tests.Bets
         [InlineData(4, 1, 6, 10, false, true, 0)] // Craps 7
         [InlineData(4, 1, 1, 10, false, false, 0)] // Miss
         public void Take2xOddsResultTest(short point, short die1, short die2, int bet, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
-            var place = new TakeOdds();
-            place.PlaceBet(bet);
-            var result = place.Result(new Game() { Point = point }, new(die1, die2));
+            var takeOdds = new TakeOdds();
+            takeOdds.PlaceBet(bet);
+            var result = takeOdds.Result(new Game() { Point = point }, new(die1, die2));
 
             Assert.Equal(expectedIsWinner, result.IsWinner);
             Assert.Equal(expectedIsLoser, result.IsLoser);
