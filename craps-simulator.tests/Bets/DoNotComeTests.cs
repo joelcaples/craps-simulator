@@ -31,7 +31,7 @@ namespace craps_simulator.tests.Bets
         [InlineData(PhaseType.Off, 0, 2, 1, true, false, 5)] // Comeout win on 3
         [InlineData(PhaseType.Off, 0, 6, 6, true, false, 5)] // Comeout win on 12
         [InlineData(PhaseType.On, 4, 6, 1, true, false, 5)]  // Craps Win
-        [InlineData(PhaseType.On, 4, 1, 1, true, false, 5)] // Point was not hit
+        [InlineData(PhaseType.On, 4, 1, 1, false, false, 0)] // Point was not hit
         [InlineData(PhaseType.On, 4, 3, 1, false, true, 0)]  // Point was hit
         public void ResultTest(PhaseType phase, short point, short die1, short die2, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
             var doNotCome = new DoNotCome() { Point = point };
