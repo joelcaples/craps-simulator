@@ -25,16 +25,14 @@ namespace craps_simulator.Lib.Bets {
 
         public IBetResult Result(Game game, Dice dice) {
 
-            if (_spot == game.Point)
+            if (game.Point == dice.Roll)
                 return new BetResult() { };
 
             if (game.Phase == PhaseType.Off)
                 return new BetResult() { };
 
-            var roll = dice.Roll;
-
             var isLoser = dice.IsCraps;
-            var isWinner = roll == _spot;
+            var isWinner = dice.Roll == _spot;
             var pays = isWinner
                     ? this.Bet * _spot switch {
                         4 or 10 => Lookups.BuyFourOrTen.Pays - (decimal)(this.Bet * .05),

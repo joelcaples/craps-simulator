@@ -63,15 +63,15 @@
         //public static ExpectedEdge BuySixAndEight => new(null, XXIII/ XXI); //Commission always paid
         //public static ExpectedEdge BuyFiveAndNine => new(null, XXIX/ XXI); //Commission always paid
         //public static ExpectedEdge BuyFourAndTen => new(null, XXXIX/ XXI); //Commission always paid
-        public static ExpectedEdge BuySixOrEight => new(null, 23 / 20); //Commission on Win Only
-        public static ExpectedEdge BuyFiveOrNine => new(null, 29 / 20); //Commission on Win Only
-        public static ExpectedEdge BuyFourOrTen => new(null, 39 / 20); //Commission on Win Only
+        public static ExpectedEdge BuySixOrEight => new(null, XXIII / XX); //Commission on Win Only
+        public static ExpectedEdge BuyFiveOrNine => new(null, XXIX / XX); //Commission on Win Only
+        public static ExpectedEdge BuyFourOrTen => new(null, XXXIX / XX); //Commission on Win Only
         //public static ExpectedEdge LaySixAndEight => new(null, XIX/XXV); //Commission always paid
         //public static ExpectedEdge LayFiveAndNine => new(null, XIX / XXXI); //Commission always paid
         //public static ExpectedEdge LayFourAndTen => new(null, XIX / XXXXI); //Commission always paid
-        public static ExpectedEdge LaySixOrEight => new(null, 19 / 24); //Commission on Win Only
-        public static ExpectedEdge LayFiveOrNine => new(null, 19 / 30); //Commission on Win Only
-        public static ExpectedEdge LayFourOrTen => new(null, 19 / 40); //Commission on Win Only
+        public static ExpectedEdge LaySixOrEight => new(null, XIX / 24); //Commission on Win Only
+        public static ExpectedEdge LayFiveOrNine => new(null, XIX / 30); //Commission on Win Only
+        public static ExpectedEdge LayFourOrTen => new(null, XIX / 40); //Commission on Win Only
         //public static ExpectedEdge HardSixAndEightAU => new(null, 19/2);
         //public static ExpectedEdge HardFourAndTenAU => new(null, 15/2);
 
