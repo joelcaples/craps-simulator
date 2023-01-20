@@ -1,7 +1,6 @@
 ﻿using craps_simulator.Lib.Bets;
 using craps_simulator.Lib.Interfaces;
 using craps_simulator.Lib.Lib;
-using craps_simulator;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,10 +16,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using craps_simulator.dto;
 using craps_simulator.wpf.dto;
 using System.Diagnostics;
 using craps_simulator.Lib.Models;
+using craps_simulator.lib.Services;
 
 namespace craps_simulator.wpf {
     /// <summary>
@@ -50,7 +49,7 @@ namespace craps_simulator.wpf {
             
             Messages.Insert(0, new Message() {
                 DiceRoll = $"{e.Dice.Die1},{e.Dice.Die2}",
-                MsgText = $"{string.Join("; ", e.BetResults.Select(r => r.Msg))}" 
+                MsgText = $"{string.Join("; ", e.BetResults.Select(r => r.Result.Msg))}" 
             });
             
             MsgList.Items.Refresh();

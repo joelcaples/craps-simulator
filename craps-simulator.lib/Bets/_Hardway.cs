@@ -39,20 +39,21 @@ namespace craps_simulator.Lib.Bets {
             // Winner
             if (isHard) {
                 // Hard ten and hard four pay the same
-                return new BetResult() { 
-                    IsWinner = true, 
-                    Pays = this.Bet * _pays
-                };
+                return new BetResult(
+                    //this.Bet, 
+                    this.Bet * _pays, true);
             }
 
             if (isCraps || isSoft) {
-                return new BetResult() { 
+                return new BetResult(this.Bet) { 
                     IsLoser = true, 
                     Pays = 0 
                 };
             }
 
-            return new BetResult() { IsWinner = false, IsLoser = false, Pays = 0 };
+            return new BetResult(
+                //this.Bet, 
+                0, false, false);
         }
     }
 }

@@ -21,13 +21,11 @@ namespace craps_simulator.lib.Bets {
             var isWinner = IsWinner(dice);
             var isLoser = IsLoser(dice);
 
-            return new BetResult() {
-                IsWinner = isWinner,
-                IsLoser = isLoser,
-                Pays = isWinner
+            return new BetResult(
+                //this.Bet, 
+                isWinner
                     ? this.Bet * Lookups.BigSixBigEight.Pays
-                    : 0
-            };
+                    : 0, isWinner, isLoser);
 
         }
     }

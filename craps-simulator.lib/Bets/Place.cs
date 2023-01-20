@@ -26,10 +26,10 @@ namespace craps_simulator.Lib.Bets {
         public IBetResult Result(Game game, Dice dice) {
 
             if (_spot == game.Point)
-                return new BetResult() { };
+                return new BetResult(this.Bet) { };
 
             if (game.Phase == PhaseType.Off)
-                return new BetResult() { };
+                return new BetResult(this.Bet) { };
 
             var roll = dice.Roll;
 
@@ -44,11 +44,11 @@ namespace craps_simulator.Lib.Bets {
                     }
                     : 0;
 
-            return new BetResult() {
-                IsWinner = isWinner,
-                IsLoser = isLoser,
-                Pays = (int)Math.Round(pays, 0, MidpointRounding.ToZero)
-            };
+            return new BetResult(
+                //this.Bet, 
+                (int)Math.Round(pays, 0, MidpointRounding.ToZero), 
+                isWinner, 
+                isLoser);
         }
     }
 }

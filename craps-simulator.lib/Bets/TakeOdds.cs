@@ -35,17 +35,17 @@ namespace craps_simulator.Lib.Bets {
             var isWinner = game.Phase == PhaseType.On && dice.Roll == game.Point;
             var isLoser = game.Phase == PhaseType.On && dice.Roll == 7;
 
-            return new BetResult() {
-                IsWinner = isWinner,
-                IsLoser = isLoser,
-                Pays = isWinner
+            return new BetResult(
+                //this.Bet, 
+                isWinner
                     ? this.Bet * game.Point switch {
                         4 or 10 => Lookups.TakeOddsFourOrTen.Pays,
                         5 or 9 => Lookups.TakeOddsFiveOrNine.Pays,
                         6 or 8 => Lookups.TakeOddsSixOrEight.Pays,
-                        _ => throw new Exception("Invalid Take Odds Bet") 
-                    } : 0
-            };
+                        _ => throw new Exception("Invalid Take Odds Bet")
+                    } : 0, 
+                isWinner, 
+                isLoser);
         }
     }
 }

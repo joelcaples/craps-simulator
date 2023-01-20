@@ -35,17 +35,19 @@ namespace craps_simulator.Lib.Bets {
             var isWinner = game.Phase == PhaseType.On && dice.Roll == 7;
             var isLoser = game.Phase == PhaseType.On && dice.Roll == game.Point;
 
-            return new BetResult() {
-                IsWinner = isWinner,
-                IsLoser = isLoser,
-                Pays = isWinner
+            return new BetResult(
+                //this.Bet,
+                isWinner
                     ? this.Bet * game.Point switch {
                         4 or 10 => Lookups.LayOddsFourOrTen.Pays,
                         5 or 9 => Lookups.LayOddsFiveOrNine.Pays,
                         6 or 8 => Lookups.LayOddsSixOrEight.Pays,
-                        _ => throw new Exception("Invalid Lay Odds Bet") 
-                    } : 0
-            };
+                        _ => throw new Exception("Invalid Lay Odds Bet")
+                    } : 0,
+                isWinner,
+                isLoser);
+
+
         }
     }
 }

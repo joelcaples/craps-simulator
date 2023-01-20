@@ -39,13 +39,11 @@ namespace craps_simulator.Lib.Bets {
                 new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(dice.Roll))
                 _point = dice.Roll;
 
-            return new BetResult() {
-                IsWinner = isWinner,
-                IsLoser = isLoser,
-                Pays = isWinner 
-                    ? this.Bet * Lookups.Come.Pays 
-                    : 0
-            };
+            return new BetResult(
+                //this.Bet, 
+                isWinner ? this.Bet * Lookups.Come.Pays : 0, 
+                isWinner, 
+                isLoser);
         }
     }
 }

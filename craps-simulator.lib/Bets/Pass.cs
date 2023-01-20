@@ -1,5 +1,6 @@
 ﻿using craps_simulator.Lib.Interfaces;
 using craps_simulator.Lib.Models;
+using System.Data.SqlTypes;
 
 namespace craps_simulator.Lib.Bets {
     public class Pass : _Bet, IBet {
@@ -26,14 +27,13 @@ namespace craps_simulator.Lib.Bets {
             if (game.Phase == PhaseType.Off && new List<short>() { 2, 3, 12 }.Contains(dice.Roll))
                 result = (false, true, "Crap Out");
 
-            return new BetResult() {
-                IsWinner = result.IsWinner,
-                IsLoser = result.IsLoser,
-                Msg = result.Msg,
-                Pays = result.IsWinner
+            return new BetResult(
+                //this.Bet, 
+                result.IsWinner
                     ? this.Bet * Lookups.Pass.Pays
-                    : 0
-            };
+                    : 0, result.IsWinner, 
+                result.IsLoser, 
+                result.Msg);
         }
     }
 }
