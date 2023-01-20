@@ -28,26 +28,22 @@ namespace craps_simulator.wpf {
     /// </summary>
     public partial class MainWindow : Window {
 
-        public List<Message> Messages = new() {
-            //new Message() { MsgText = "One" },
-            //new Message() { MsgText = "Two" },
-            //new Message() { MsgText = "Three" },
-        };
+        public List<Message> Messages = new() { };
 
         public MainWindow() {
             InitializeComponent();
-            //var messages = new List<Message>() {
-            //    new Message() { MsgText = "One" },
-            //    new Message() { MsgText = "Two" },
-            //    new Message() { MsgText = "Three" },
-            //};
             MsgList.ItemsSource = Messages;
         }
 
         private void OnGo(object sender, RoutedEventArgs e) {
             var runner = new Runner();
-            runner.MsgEvt += Runner_MsgEvt;
-            runner.Go();
+
+            var list = new List<IBet>() {
+                new Pass(),// { Bet=5},
+                new HardTen()
+            };
+
+            runner.Go(list, Runner_MsgEvt);
         }
 
         private void Runner_MsgEvt(object sender, RollResultEventArgs e) {

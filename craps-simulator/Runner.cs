@@ -22,11 +22,7 @@ namespace craps_simulator {
 
         public delegate void Msg(object sender, RollResultEventArgs e);
 
-        public event Msg? MsgEvt;
-
-        private void RaiseMsg(Dice dice, IEnumerable<IBetResult> betResults) {
-            MsgEvt?.Invoke(this, new RollResultEventArgs(dice, betResults));
-        }
+        //public event Msg? MsgEvt;
 
         public void Go() {
             Go(new List<IBet>() {
@@ -40,7 +36,7 @@ namespace craps_simulator {
             });
         }
 
-        public void Go(IEnumerable<IBet> bets) {
+        public void Go(IEnumerable<IBet> bets, Msg? handler = null) {
 
             var winners = 0;
             var losers = 0;
@@ -102,7 +98,8 @@ namespace craps_simulator {
                     results.Add(result);
                 }
 
-                RaiseMsg(dice, results);
+                //RaiseMsg(dice, results);
+                handler?.Invoke(this, new RollResultEventArgs(dice,  results));
                 var throwResult = GameLib.Advance(game, dice);
 
                 LogResult(throwResult, dice, betNets.Sum(bi => bi.SessionNet));
@@ -125,14 +122,14 @@ namespace craps_simulator {
             var winnings = bankroll - initialBankRoll;
 
             LogTotals(iteration, betNets, winnings);
-        }
 
-        private static void PlaceBet(IBet bet, int amt, ref int bankroll) {
-            if (bankroll < amt)
-                return;
+            static void PlaceBet(IBet bet, int amt, ref int bankroll) {
+                if (bankroll < amt)
+                    return;
 
-            bet.PlaceBet(amt);
-            bankroll -= amt;
+                bet.PlaceBet(amt);
+                bankroll -= amt;
+            }
         }
 
         private static void LogResult(ThrowResult throwResult, Dice dice, int winLoss) {
