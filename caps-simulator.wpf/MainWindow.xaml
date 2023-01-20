@@ -7,31 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical" Margin="10">
+        <DockPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="10" LastChildFill="True">
 
-            <!--<ListView Margin="10,10,0,13" Name="MsgList" 
-                      HorizontalAlignment="Left" 
-                      VerticalAlignment="Top" 
-                      Width="194" Height="200">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <TextBlock Text="junk" />
-                            <TextBlock Text="{Binding MsgText}" />
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
+            <StackPanel 
+                Orientation="Horizontal" 
+                HorizontalAlignment="Center" 
+                Height="50" 
+                VerticalAlignment="Bottom" 
+                DockPanel.Dock="Bottom">
+
+                <Button 
+                Name="btnGo" 
+                BorderBrush="Black" 
+                BorderThickness="1" 
+                Click="OnGo" 
+                ClickMode="Press"
+                Width="100"
+                Height="25"
+                Margin="5">
+                    Go!
+                </Button>
+
+                <Button 
+                Name="btnClear" 
+                BorderBrush="Black" 
+                BorderThickness="1" 
+                Click="OnClear" 
+                ClickMode="Press"
+                Width="100"
+                Height="25"
+                Margin="5">
+                    Clear
+                </Button>
+            </StackPanel>
 
             <ListView Margin="10,10,0,13" Name="MsgList" 
                       HorizontalAlignment="Stretch" 
-                      VerticalAlignment="Stretch" 
-                      Height="200">
+                      VerticalAlignment="Stretch" DockPanel.Dock="Top">
                 <ListView.View>
                     <GridView>
-                        <!--GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding Age}" />
-                        <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Mail}" /-->
                         <GridViewColumn Header="TimeStamp" Width="150" DisplayMemberBinding="{Binding TimeStamp}" />
                         <GridViewColumn Header="Roll" Width="50" DisplayMemberBinding="{Binding DiceRoll}" />
                         <GridViewColumn Header="Message" Width="150" DisplayMemberBinding="{Binding MsgText}" />
@@ -39,28 +53,8 @@
                 </ListView.View>
             </ListView>
 
-            <Button 
-                Name="btnGo" 
-                BorderBrush="Black" 
-                BorderThickness="1" 
-                Click="OnGo" 
-                ClickMode="Press"
-                Width="100"
-                Height="25">
-                Go!
-            </Button>
+            
 
-            <Button 
-                Name="btnClear" 
-                BorderBrush="Black" 
-                BorderThickness="1" 
-                Click="OnClear" 
-                ClickMode="Press"
-                Width="100"
-                Height="25">
-                Clear
-            </Button>
-
-        </StackPanel>
+        </DockPanel>
     </Grid>
 </Window>
