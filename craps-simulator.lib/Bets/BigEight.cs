@@ -1,11 +1,6 @@
 ﻿using craps_simulator.Lib.Bets;
 using craps_simulator.Lib.Interfaces;
 using craps_simulator.Lib.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace craps_simulator.lib.Bets {
     internal class BigEight : _Bet, IBet {
@@ -22,7 +17,6 @@ namespace craps_simulator.lib.Bets {
             var isLoser = IsLoser(dice);
 
             return new BetResult(
-                //this.Bet, 
                 isWinner ? this.Bet * Lookups.BigSixBigEight.Pays : 0, isWinner, isLoser);
 
         }

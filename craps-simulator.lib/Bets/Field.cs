@@ -10,15 +10,10 @@ namespace craps_simulator.Lib.Bets {
 
         public IBetResult Result(Game game, Dice dice) {
 
-            Func<Dice, bool> IsWinner = (dice) => (new List<int>() { 2, 3, 4, 9, 10, 11, 12 }).Contains(dice.Roll);
-
-            Func<Dice, bool> IsLoser = (dice) => !IsWinner(dice);
-
-            var isWinner = IsWinner(dice);
-            var isLoser = IsLoser(dice);
+            var isWinner = (new List<int>() { 2, 3, 4, 9, 10, 11, 12 }).Contains(dice.Roll);
+            var isLoser = !isWinner;
 
             return new BetResult(
-                //this.Bet, 
                 isWinner ? this.Bet * (dice.Roll == 2 || dice.Roll == 12 ? Lookups.FieldTwoOrTwelve.Pays : Lookups.Field.Pays) : 0, isWinner, isLoser);
         }
     }

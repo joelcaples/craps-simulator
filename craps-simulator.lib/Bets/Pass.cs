@@ -1,6 +1,5 @@
 ﻿using craps_simulator.Lib.Interfaces;
 using craps_simulator.Lib.Models;
-using System.Data.SqlTypes;
 
 namespace craps_simulator.Lib.Bets {
     public class Pass : _Bet, IBet {
@@ -28,7 +27,6 @@ namespace craps_simulator.Lib.Bets {
                 result = (false, true, "Crap Out");
 
             return new BetResult(
-                //this.Bet, 
                 result.IsWinner
                     ? this.Bet * Lookups.Pass.Pays
                     : 0, result.IsWinner, 

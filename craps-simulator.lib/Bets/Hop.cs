@@ -23,17 +23,10 @@ namespace craps_simulator.Lib.Bets {
             var rolledDice = new List<short>() { dice.Die1, dice.Die2 };
             rolledDice.Sort();
 
-            static bool IsWinner(List<short> hopDice, List<short> rolledDice) => 
-                Enumerable.SequenceEqual(hopDice, rolledDice);
-
-            static bool IsLoser(List<short> hopDice, List<short> rolledDice) => 
-                !IsWinner(hopDice, rolledDice);
-
-            var isWinner = IsWinner(hopDice, rolledDice);
-            var isLoser = IsLoser(hopDice, rolledDice);
+            var isWinner = Enumerable.SequenceEqual(hopDice, rolledDice);
+            var isLoser = !isWinner;
 
             return new BetResult(
-                //this.Bet, 
                 isWinner ? this.Bet * (_die1 == _die2 ? Lookups.OneWayHop.Pays : Lookups.TwoWayHop.Pays) : 0, 
                 isWinner, 
                 isLoser);

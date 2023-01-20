@@ -40,7 +40,6 @@ namespace craps_simulator.Lib.Bets {
                 _point = dice.Roll;
 
             return new BetResult(
-                //this.Bet,
                 isWinner ? this.Bet * Lookups.DoNotCome.Pays : 0,
                 isWinner,
                 isLoser);

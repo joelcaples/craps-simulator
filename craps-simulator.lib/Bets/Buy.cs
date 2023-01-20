@@ -43,7 +43,6 @@ namespace craps_simulator.Lib.Bets {
                     : 0;
 
             return new BetResult(
-                //this.Bet,
                 (int)Math.Round(pays, 0, MidpointRounding.ToZero),
                 isWinner,
                 isLoser);

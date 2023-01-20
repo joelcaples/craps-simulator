@@ -1,7 +1,4 @@
-﻿using craps_simulator.Lib.Interfaces;
-using craps_simulator.Lib.Models;
-
-namespace craps_simulator.Lib.Bets {
+﻿namespace craps_simulator.Lib.Bets {
     public class _Bet {
 
         protected int _bet = 0;

@@ -17,7 +17,6 @@ namespace craps_simulator.Lib.Bets {
             var isLoser = IsLoser(dice);
 
             return new BetResult(
-                //this.Bet, 
                 isWinner ? this.Bet * Lookups.AnyCraps.Pays : 0, isWinner, isLoser);
         }
     }

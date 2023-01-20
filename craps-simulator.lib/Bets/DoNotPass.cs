@@ -30,7 +30,6 @@ namespace craps_simulator.Lib.Bets {
             var isLoser = IsLoser(game, dice);
 
             return new BetResult(
-                //this.Bet, 
                 isWinner ? this.Bet * Lookups.DoNotPass.Pays : 0, isWinner, isLoser);
         }
     }

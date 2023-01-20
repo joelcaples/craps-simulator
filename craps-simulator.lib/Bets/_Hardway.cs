@@ -40,7 +40,6 @@ namespace craps_simulator.Lib.Bets {
             if (isHard) {
                 // Hard ten and hard four pay the same
                 return new BetResult(
-                    //this.Bet, 
                     this.Bet * _pays, true);
             }
 
@@ -52,7 +51,6 @@ namespace craps_simulator.Lib.Bets {
             }
 
             return new BetResult(
-                //this.Bet, 
                 0, false, false);
         }
     }
