@@ -28,7 +28,7 @@ namespace craps_simulator.tests.Bets
         [InlineData(8, 2, 6, 10, false, true, 0)] // Hit 8 (6/5 Payout)
         [InlineData(9, 3, 6, 10, false, true, 0)] // Hit 9
         [InlineData(10, 4, 6, 10, false, true, 0)] // Hit 10
-        [InlineData(4, 1, 6, 10, true, false, 10)] // Craps 7
+        [InlineData(4, 1, 6, 10, true, false, 5)] // Craps 7
         [InlineData(4, 1, 1, 10, false, false, 0)] // Miss
         public void Lay2xOddsResultTest(short point, short die1, short die2, int bet, bool expectedIsWinner, bool expectedIsLoser, decimal expectedPays) {
             var layOdds = new LayOdds();

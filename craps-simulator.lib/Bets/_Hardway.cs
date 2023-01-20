@@ -7,27 +7,25 @@ namespace craps_simulator.Lib.Bets {
         private readonly int _requiredDie;
         private readonly decimal _pays;
 
-        public _Hardway(short roll) {
+        public _Hardway(HardWayRollResult roll) {
 
             switch(roll) {
-                case 4:
+                case HardWayRollResult.Four:
                     _requiredDie = 2;
                     _pays = Lookups.HardFourOrTen.Pays;
                     break;
-                case 6:
+                case HardWayRollResult.Six:
                     _requiredDie = 3;
                     _pays = Lookups.HardSixOrEight.Pays;
                     break;
-                case 8:
+                case HardWayRollResult.Eight:
                     _requiredDie = 4;
                     _pays = Lookups.HardSixOrEight.Pays;
                     break;
-                case 10:
+                case HardWayRollResult.Ten:
                     _requiredDie = 5;
                     _pays = Lookups.HardFourOrTen.Pays;
                     break;
-                default:
-                    throw new Exception("Invalid Die");
 
             }
         }

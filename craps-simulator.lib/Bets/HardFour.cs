@@ -5,6 +5,6 @@ namespace craps_simulator.Lib.Bets
     public class HardFour : _Hardway, IBet {
         public string Name => "Hard Four";
         public BetType Type => BetType.HardFour;
-        public HardFour() :base(4) { }
+        public HardFour() :base(HardWayRollResult.Four) { }
     }
 }

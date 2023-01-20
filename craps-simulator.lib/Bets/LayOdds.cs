@@ -17,20 +17,23 @@ namespace craps_simulator.Lib.Bets {
 
         public IBetResult Result(Game game, Dice dice) {
 
-            Func<Game, Dice, bool> IsLoser = (game, dice) => {
-                var isWinner =
-                    game.Phase == PhaseType.On && dice.Roll == 7;
-                return isWinner;
-            };
+            //Func<Game, Dice, bool> IsLoser = (game, dice) => {
+            //    var isWinner =
+            //        game.Phase == PhaseType.On && dice.Roll == 7;
+            //    return isWinner;
+            //};
 
-            Func<Game, Dice, bool> IsWinner = (game, dice) => {
-                var isLoser =
-                    (game.Phase == PhaseType.On && dice.Roll == game.Point);
-                return isLoser;
-            };
+            //Func<Game, Dice, bool> IsWinner = (game, dice) => {
+            //    var isLoser =
+            //        (game.Phase == PhaseType.On && dice.Roll == game.Point);
+            //    return isLoser;
+            //};
 
-            var isWinner = IsWinner(game, dice);
-            var isLoser = IsLoser(game, dice);
+            //var isWinner = IsWinner(game, dice);
+            //var isLoser = IsLoser(game, dice);
+
+            var isWinner = game.Phase == PhaseType.On && dice.Roll == 7;
+            var isLoser = game.Phase == PhaseType.On && dice.Roll == game.Point;
 
             return new BetResult() {
                 IsWinner = isWinner,

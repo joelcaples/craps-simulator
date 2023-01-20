@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using craps_simulator;
 
-//var runner = new Runner();
-Runner.Go();
+var runner = new Runner();
+runner.Go();
 
 
 //Console.WriteLine($"House Take $:{housetake:C}");

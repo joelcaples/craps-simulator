@@ -29,6 +29,7 @@ namespace craps_simulator.Lib.Bets {
             return new BetResult() {
                 IsWinner = result.IsWinner,
                 IsLoser = result.IsLoser,
+                Msg = result.Msg,
                 Pays = result.IsWinner
                     ? this.Bet * Lookups.Pass.Pays
                     : 0

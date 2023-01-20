@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <RootNamespace>caps_simulator.wpf</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\craps-simulator.lib\craps-simulator.lib.csproj" />
+    <ProjectReference Include="..\craps-simulator\craps-simulator.csproj" />
+  </ItemGroup>
+
+</Project>

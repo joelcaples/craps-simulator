@@ -3,12 +3,33 @@ using craps_simulator.dto;
 using craps_simulator.Lib.Interfaces;
 using craps_simulator.Lib.Models;
 using craps_simulator.Lib.Lib;
+using System.Collections.Generic;
 
 namespace craps_simulator {
 
-    internal class Runner {
+    public class RollResultEventArgs {
+        
+        public RollResultEventArgs(Dice dice, IEnumerable<IBetResult> betResults) { 
+            Dice = dice; 
+            BetResults = betResults; 
+        }
+        
+        public Dice Dice { get; }
+        public IEnumerable<IBetResult> BetResults { get; }
+    }
 
-        public static void Go() {
+    public class Runner {
+
+        public delegate void Msg(object sender, RollResultEventArgs e);
+
+        public event Msg MsgEvt;
+
+        private void RaiseMsg(Dice dice, IEnumerable<IBetResult> betResults) {
+            if (MsgEvt != null)
+                MsgEvt.Invoke(this, new RollResultEventArgs(dice, betResults));
+        }
+
+        public void Go() {
             Go(new List<IBet>() {
                 new Pass(),// { Bet=5},
                 new HardTen(),
@@ -20,7 +41,7 @@ namespace craps_simulator {
             });
         }
 
-        public static void Go(IEnumerable<IBet> bets) {
+        public void Go(IEnumerable<IBet> bets) {
 
             var winners = 0;
             var losers = 0;
@@ -48,6 +69,7 @@ namespace craps_simulator {
                 if (betNets == null)
                     throw new InvalidDataException();
 
+                var results = new List<IBetResult>();
                 for(int i=0;i< betNets.Count;++i) {
 
                     var betInfo = betNets[i];
@@ -77,8 +99,11 @@ namespace craps_simulator {
                     housetake -= netResult;
                     betInfo.SessionNet += netResult;
                     betInfo.TotalNet += netResult;
+
+                    results.Add(result);
                 }
 
+                RaiseMsg(dice, results);
                 var throwResult = GameLib.Advance(game, dice);
 
                 LogResult(throwResult, dice, betNets.Sum(bi => bi.SessionNet));
@@ -111,7 +136,7 @@ namespace craps_simulator {
             bankroll -= amt;
         }
 
-        private static void LogResult(ThrowResult throwResult, Dice dice, int winLoss) {
+        private void LogResult(ThrowResult throwResult, Dice dice, int winLoss) {
 
             if (throwResult.IsLoser) {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -140,8 +165,9 @@ namespace craps_simulator {
             LogRoll(dice);
         }
 
-        private static void LogRoll(Dice dice) {
+        private void LogRoll(Dice dice) {
             Console.Write($"{dice.Die1},{dice.Die2}".PadRight(5));
+            //RaiseMsg($"{dice.Die1},{dice.Die2}");
         }
 
         private static void LogTotals(int totalIterations, IEnumerable<BetNetDto> betNets, int winnings) {

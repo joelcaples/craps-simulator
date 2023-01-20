@@ -35,5 +35,14 @@ namespace craps_simulator.tests.Bets
             Assert.Equal(expectedIsLoser, result.IsLoser);
             Assert.Equal(expectedPays, result.Pays);
         }
+
+        //[Fact]
+        //public void ValidDieTest() {
+
+        //    var e = Record.Exception(() => {
+        //        var _ = new HardFour(99).Type;
+        //    });
+        //    Assert.NotNull(e);
+        //}
     }
 }

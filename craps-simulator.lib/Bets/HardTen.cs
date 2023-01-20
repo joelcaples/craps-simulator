@@ -17,6 +17,6 @@ namespace craps_simulator.Lib.Bets
             }
         }
 
-        public HardTen() :base(10) { }
+        public HardTen() :base(HardWayRollResult.Ten) { }
     }
 }
