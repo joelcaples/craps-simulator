@@ -22,11 +22,10 @@ namespace craps_simulator {
 
         public delegate void Msg(object sender, RollResultEventArgs e);
 
-        public event Msg MsgEvt;
+        public event Msg? MsgEvt;
 
         private void RaiseMsg(Dice dice, IEnumerable<IBetResult> betResults) {
-            if (MsgEvt != null)
-                MsgEvt.Invoke(this, new RollResultEventArgs(dice, betResults));
+            MsgEvt?.Invoke(this, new RollResultEventArgs(dice, betResults));
         }
 
         public void Go() {
@@ -136,7 +135,7 @@ namespace craps_simulator {
             bankroll -= amt;
         }
 
-        private void LogResult(ThrowResult throwResult, Dice dice, int winLoss) {
+        private static void LogResult(ThrowResult throwResult, Dice dice, int winLoss) {
 
             if (throwResult.IsLoser) {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -165,9 +164,8 @@ namespace craps_simulator {
             LogRoll(dice);
         }
 
-        private void LogRoll(Dice dice) {
+        private static void LogRoll(Dice dice) {
             Console.Write($"{dice.Die1},{dice.Die2}".PadRight(5));
-            //RaiseMsg($"{dice.Die1},{dice.Die2}");
         }
 
         private static void LogTotals(int totalIterations, IEnumerable<BetNetDto> betNets, int winnings) {

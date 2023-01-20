@@ -18,11 +18,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using craps_simulator.dto;
-using caps_simulator.wpf.dto;
+using craps_simulator.wpf.dto;
 using System.Diagnostics;
 using craps_simulator.Lib.Models;
 
-namespace caps_simulator.wpf {
+namespace craps_simulator.wpf {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

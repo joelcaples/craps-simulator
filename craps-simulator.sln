@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{FCC4DD9B-464
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "caps-simulator.wpf", "caps-simulator.wpf\caps-simulator.wpf.csproj", "{F791496A-F453-4534-98BE-7BA2CE8E29D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "craps-simulator.wpf", "caps-simulator.wpf\craps-simulator.wpf.csproj", "{F791496A-F453-4534-98BE-7BA2CE8E29D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
