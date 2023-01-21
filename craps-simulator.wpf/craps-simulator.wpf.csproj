@@ -9,6 +9,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\dice-six-faces-five.png" />
+    <None Remove="images\dice-six-faces-five.svg" />
+    <None Remove="images\dice-six-faces-four.png" />
+    <None Remove="images\dice-six-faces-four.svg" />
+    <None Remove="images\dice-six-faces-one.png" />
+    <None Remove="images\dice-six-faces-one.svg" />
+    <None Remove="images\dice-six-faces-six.png" />
+    <None Remove="images\dice-six-faces-six.svg" />
+    <None Remove="images\dice-six-faces-three.png" />
+    <None Remove="images\dice-six-faces-three.svg" />
+    <None Remove="images\dice-six-faces-two.png" />
+    <None Remove="images\dice-six-faces-two.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\dice-six-faces-five.png" />
+    <Resource Include="images\dice-six-faces-five.svg" />
+    <Resource Include="images\dice-six-faces-four.png" />
+    <Resource Include="images\dice-six-faces-four.svg" />
+    <Resource Include="images\dice-six-faces-one.png" />
+    <Resource Include="images\dice-six-faces-one.svg" />
+    <Resource Include="images\dice-six-faces-six.png" />
+    <Resource Include="images\dice-six-faces-six.svg" />
+    <Resource Include="images\dice-six-faces-three.png" />
+    <Resource Include="images\dice-six-faces-three.svg" />
+    <Resource Include="images\dice-six-faces-two.png" />
+    <Resource Include="images\dice-six-faces-two.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\craps-simulator.lib\craps-simulator.lib.csproj" />
   </ItemGroup>
 

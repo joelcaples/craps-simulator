@@ -39,6 +39,36 @@
                 Margin="5">
                     Clear
                 </Button>
+                <Image Width="25" Height="25" Margin="2">
+                    <Image.Source>
+                        <BitmapImage UriSource="images/dice-six-faces-one.png" />
+                    </Image.Source>
+                </Image>
+                <Image Width="25" Height="25" Margin="2">
+                    <Image.Source>
+                        <BitmapImage UriSource="images/dice-six-faces-two.png" />
+                    </Image.Source>
+                </Image>
+                <Image Width="25" Height="25" Margin="2">
+                    <Image.Source>
+                        <BitmapImage UriSource="images/dice-six-faces-three.png" />
+                    </Image.Source>
+                </Image>
+                <Image Width="25" Height="25" Margin="2">
+                    <Image.Source>
+                        <BitmapImage UriSource="images/dice-six-faces-four.png" />
+                    </Image.Source>
+                </Image>
+                <Image Width="25" Height="25" Margin="2">
+                    <Image.Source>
+                        <BitmapImage UriSource="images/dice-six-faces-five.png" />
+                    </Image.Source>
+                </Image>
+                <Image Width="25" Height="25" Margin="2">
+                    <Image.Source>
+                        <BitmapImage UriSource="/images/dice-six-faces-six.png" />
+                    </Image.Source>
+                </Image>
             </StackPanel>
 
             <ListView Margin="10,10,0,13" Name="MsgList" 
@@ -47,8 +77,47 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="TimeStamp" Width="150" DisplayMemberBinding="{Binding TimeStamp}" />
-                        <GridViewColumn Header="Roll" Width="50" DisplayMemberBinding="{Binding DiceRoll}" />
-                        <GridViewColumn Header="Message" Width="150" DisplayMemberBinding="{Binding MsgText}" />
+                        <GridViewColumn Header="Roll" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Height="20" Orientation="Horizontal">
+
+                                        <!--StackPanel.Style>
+                                            <Style TargetType="StackPanel">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=Dice.Die1}" Value="3">
+                                                        <Setter Property="Background" Value="Orange"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </StackPanel.Style-->
+
+                                        <Image Width="15" Height="15" Margin="1,0,1,0">
+                                            <!--Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Dice.Die1}" Value="3">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style-->
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelWidth="300" UriSource="{Binding Path=Die1ImageUri}" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Image Width="15" Height="15" Margin="1,0,1,0">
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelWidth="300" UriSource="{Binding Path=Die2ImageUri}" />
+                                            </Image.Source>
+                                        </Image>
+
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Message" Width="300" DisplayMemberBinding="{Binding MsgText}" />
                     </GridView>
                 </ListView.View>
             </ListView>

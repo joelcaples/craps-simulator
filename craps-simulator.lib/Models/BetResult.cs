@@ -18,9 +18,9 @@ namespace craps_simulator.Lib.Models {
         }
 
         //public int BetAmt { get; set; } = 0;
-        public bool IsWinner { get; set; } = false;
-        public bool IsLoser { get; set; } = false;
-        public decimal Pays { get; set; } = 0;
-        public string Msg { get; set; } = string.Empty;
+        public bool IsWinner { get; } = false;
+        public bool IsLoser { get; } = false;
+        public decimal Pays { get; } = 0;
+        public string Msg { get; } = string.Empty;
     }
 }

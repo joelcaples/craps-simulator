@@ -22,16 +22,17 @@ using craps_simulator.Lib.Models;
 using craps_simulator.lib.Services;
 
 namespace craps_simulator.wpf {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
 
-        public List<Message> Messages = new() { };
+        private List<RollResultListItem> _rollResultListItems = new() { };
 
         public MainWindow() {
             InitializeComponent();
-            MsgList.ItemsSource = Messages;
+            MsgList.ItemsSource = _rollResultListItems;
         }
 
         private void OnGo(object sender, RoutedEventArgs e) {
@@ -46,23 +47,18 @@ namespace craps_simulator.wpf {
         }
 
         private void Runner_MsgEvt(object sender, RollResultEventArgs e) {
-            
-            Messages.Insert(0, new Message() {
-                DiceRoll = $"{e.Dice.Die1},{e.Dice.Die2}",
-                MsgText = $"{string.Join("; ", e.BetResults.Select(r => r.Result.Msg))}" 
-            });
-            
+
+            _rollResultListItems.Insert(0, new RollResultListItem(
+                e.Dice,
+                $"{string.Join("; ", e.BetResults.Where(r => !string.IsNullOrEmpty(r.Result.Msg)).Select(r => r.Result.Msg))}"
+            ));
+
             MsgList.Items.Refresh();
         }
 
         private void OnClear(object sender, RoutedEventArgs e) {
-            Messages.Clear();
+            _rollResultListItems.Clear();
             MsgList.Items.Refresh();
         }
-
-        //private void Runner_MsgEvt(object sender, MsgEventArgs e) {
-        //    Messages.Add(new Message() { MsgText = e.Msg });
-        //    MsgList.Items.Refresh();
-        //}
     }
 }

@@ -21,10 +21,13 @@ namespace craps_simulator.Lib.Bets {
                 result = (true, false, "Pass-Line Winner");
 
             if (game.Phase == PhaseType.On && dice.Roll == 7)
-                result = (false, true, "Seven Out");
+                result = (false, true, "Pass-Line Loser");
 
             if (game.Phase == PhaseType.Off && new List<short>() { 2, 3, 12 }.Contains(dice.Roll))
                 result = (false, true, "Crap Out");
+
+            if (game.Phase == PhaseType.Off && new List<short>() { 4, 5, 6, 8, 9, 10 }.Contains(dice.Roll))
+                result = (false, true, $"Point Set: {dice.Roll}");
 
             return new BetResult(
                 result.IsWinner

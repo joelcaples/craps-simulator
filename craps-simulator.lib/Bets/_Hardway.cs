@@ -1,5 +1,6 @@
 ﻿using craps_simulator.Lib.Interfaces;
 using craps_simulator.Lib.Models;
+using static craps_simulator.lib.Services.Runner;
 
 namespace craps_simulator.Lib.Bets {
     public abstract class _Hardway : _Bet {
@@ -40,14 +41,19 @@ namespace craps_simulator.Lib.Bets {
             if (isHard) {
                 // Hard ten and hard four pay the same
                 return new BetResult(
-                    this.Bet * _pays, true);
+                    this.Bet * _pays, 
+                    true,
+                    false,
+                    $"Hard {_requiredDie * 2} Winner"
+);
             }
 
             if (isCraps || isSoft) {
-                return new BetResult(this.Bet) { 
-                    IsLoser = true, 
-                    Pays = 0 
-                };
+                return new BetResult(
+                    0,
+                    false,
+                    true,
+                    $"Hard {_requiredDie * 2} Loser");
             }
 
             return new BetResult(
