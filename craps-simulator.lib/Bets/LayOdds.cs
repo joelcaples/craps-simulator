@@ -22,12 +22,12 @@ namespace craps_simulator.Lib.Bets {
 
             return new BetResult(
                 isWinner
-                    ? this.Bet * game.Point switch {
+                    ? (int)Math.Round(this.Bet * game.Point switch {
                         4 or 10 => Lookups.LayOddsFourOrTen.Pays,
                         5 or 9 => Lookups.LayOddsFiveOrNine.Pays,
                         6 or 8 => Lookups.LayOddsSixOrEight.Pays,
                         _ => throw new Exception("Invalid Lay Odds Bet")
-                    } : 0,
+                    }, MidpointRounding.ToZero) : 0,
                 isWinner,
                 isLoser,
                 isWinner ? $"{Name} Winner" : isLoser ? $"{Name} Loser" : string.Empty);

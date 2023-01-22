@@ -27,7 +27,9 @@ namespace craps_simulator.Lib.Bets {
             var isLoser = !isWinner;
 
             return new BetResult(
-                isWinner ? this.Bet * (_die1 == _die2 ? Lookups.OneWayHop.Pays : Lookups.TwoWayHop.Pays) : 0, 
+                isWinner 
+                    ? (int)Math.Round(this.Bet * (_die1 == _die2 ? Lookups.OneWayHop.Pays : Lookups.TwoWayHop.Pays), MidpointRounding.ToZero) 
+                    : 0, 
                 isWinner, 
                 isLoser,
                 isWinner ? $"{Name} Winner" : isLoser ? $"{Name} Loser" : string.Empty);

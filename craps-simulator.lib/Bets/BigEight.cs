@@ -17,9 +17,9 @@ namespace craps_simulator.lib.Bets {
             var isLoser = IsLoser(dice);
 
             return new BetResult(
-                isWinner 
-                    ? this.Bet * Lookups.BigSixBigEight.Pays 
-                    : 0, 
+                isWinner
+                    ? (int)Math.Round(this.Bet * Lookups.BigSixBigEight.Pays, MidpointRounding.ToZero)
+                    : 0,
                 isWinner, 
                 isLoser,
                 isWinner ? $"{Name} Winner" : isLoser ? $"{Name} Loser" : string.Empty);

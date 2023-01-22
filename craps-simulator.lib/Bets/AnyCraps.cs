@@ -18,7 +18,7 @@ namespace craps_simulator.Lib.Bets {
 
             return new BetResult(
                 isWinner 
-                    ? this.Bet * Lookups.AnyCraps.Pays 
+                    ? (int)Math.Round(this.Bet * Lookups.AnyCraps.Pays, MidpointRounding.ToZero)
                     : 0, 
                 isWinner, 
                 isLoser,

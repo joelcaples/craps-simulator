@@ -41,11 +41,10 @@ namespace craps_simulator.Lib.Bets {
             if (isHard) {
                 // Hard ten and hard four pay the same
                 return new BetResult(
-                    this.Bet * _pays, 
+                    (int)Math.Round(this.Bet * _pays, MidpointRounding.ToZero), 
                     true,
                     false,
-                    $"Hard {_requiredDie * 2} Winner"
-);
+                    $"Hard {_requiredDie * 2} Winner");
             }
 
             if (isCraps || isSoft) {

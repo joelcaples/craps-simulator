@@ -5,7 +5,7 @@ namespace craps_simulator.Lib.Models {
 
         public BetResult(
             //int betAmt, 
-            decimal pays = 0, 
+            int pays = 0, 
             bool isWinner = false, 
             bool isLoser = false, 
             string msg = "") {

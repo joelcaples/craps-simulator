@@ -14,9 +14,9 @@ namespace craps_simulator.Lib.Bets {
             var isLoser = !isWinner;
 
             return new BetResult(
-                isWinner 
-                    ? this.Bet * (dice.Roll == 2 || dice.Roll == 12 ? Lookups.FieldTwoOrTwelve.Pays : Lookups.Field.Pays) 
-                    : 0, 
+                isWinner
+                    ? (int)Math.Round(this.Bet * (dice.Roll == 2 || dice.Roll == 12 ? Lookups.FieldTwoOrTwelve.Pays : Lookups.Field.Pays), MidpointRounding.ToZero)
+                    : 0,
                 isWinner, 
                 isLoser,
                 isWinner ? "Field Winner" : "Field Loser");
