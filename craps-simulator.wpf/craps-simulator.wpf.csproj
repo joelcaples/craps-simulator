@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\dice-335026_1280.png" />
     <None Remove="images\dice-six-faces-five.png" />
     <None Remove="images\dice-six-faces-five.svg" />
     <None Remove="images\dice-six-faces-four.png" />
@@ -30,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\dice-335026_1280.png" />
     <Resource Include="images\dice-six-faces-five.png" />
     <Resource Include="images\dice-six-faces-five.svg" />
     <Resource Include="images\dice-six-faces-four.png" />

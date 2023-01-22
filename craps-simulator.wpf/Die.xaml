@@ -52,5 +52,15 @@
             TextAlignment="Center" FontSize="18" 
             Visibility="{Binding Path=IsSix, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+        <Rectangle Width="15" Height="15">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/dice-335026_1280.png" 
+                                Stretch="Fill"
+                                AlignmentX="Left" 
+                                AlignmentY="Top"
+                                ViewboxUnits="Absolute" Viewbox="0,0,300,300" />
+            </Rectangle.Fill>
+        </Rectangle>
+
     </StackPanel>
 </UserControl>
