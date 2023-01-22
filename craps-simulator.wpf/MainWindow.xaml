@@ -5,70 +5,184 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:craps_simulator.wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        >
     <Grid>
         <DockPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="10" LastChildFill="True">
 
             <StackPanel 
-                Orientation="Horizontal" 
-                HorizontalAlignment="Center" 
-                Height="50" 
-                VerticalAlignment="Bottom" 
+                Orientation="Vertical" 
                 DockPanel.Dock="Bottom">
+                
+                <StackPanel 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Height="50" 
+                    VerticalAlignment="Bottom">
 
-                <Button 
-                Name="btnGo" 
-                BorderBrush="Black" 
-                BorderThickness="1" 
-                Click="OnGo" 
-                ClickMode="Press"
-                Width="100"
-                Height="25"
-                Margin="5">
-                    Go!
-                </Button>
+                    <ComboBox
+                        Name="cboStrategy"
+                        Width="200"
+                        Height="25"
+                        Margin="0,0,5,0"
+                        SelectedIndex="0">
 
-                <Button 
-                Name="btnClear" 
-                BorderBrush="Black" 
-                BorderThickness="1" 
-                Click="OnClear" 
-                ClickMode="Press"
-                Width="100"
-                Height="25"
-                Margin="5">
-                    Clear
-                </Button>
-                <Image Width="25" Height="25" Margin="2">
-                    <Image.Source>
-                        <BitmapImage UriSource="images/dice-six-faces-one.png" />
-                    </Image.Source>
-                </Image>
-                <Image Width="25" Height="25" Margin="2">
-                    <Image.Source>
-                        <BitmapImage UriSource="images/dice-six-faces-two.png" />
-                    </Image.Source>
-                </Image>
-                <Image Width="25" Height="25" Margin="2">
-                    <Image.Source>
-                        <BitmapImage UriSource="images/dice-six-faces-three.png" />
-                    </Image.Source>
-                </Image>
-                <Image Width="25" Height="25" Margin="2">
-                    <Image.Source>
-                        <BitmapImage UriSource="images/dice-six-faces-four.png" />
-                    </Image.Source>
-                </Image>
-                <Image Width="25" Height="25" Margin="2">
-                    <Image.Source>
-                        <BitmapImage UriSource="images/dice-six-faces-five.png" />
-                    </Image.Source>
-                </Image>
-                <Image Width="25" Height="25" Margin="2">
-                    <Image.Source>
-                        <BitmapImage UriSource="/images/dice-six-faces-six.png" />
-                    </Image.Source>
-                </Image>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding IsSelected}" Width="20" />
+                                    <TextBlock Text="{Binding Name}" Width="100" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
+                    </ComboBox>
+
+                    <Button 
+                        Name="btnGo" 
+                        BorderBrush="Black" 
+                        BorderThickness="1" 
+                        Click="OnGo" 
+                        ClickMode="Press"
+                        Width="100"
+                        Height="25"
+                        Margin="0,0,5,0">
+                        Go!
+                    </Button>
+
+                    <Button 
+                        Name="btnClear" 
+                        BorderBrush="Black" 
+                        BorderThickness="1" 
+                        Click="OnClear" 
+                        ClickMode="Press"
+                        Width="100"
+                        Height="25"
+                        Margin="0,0,5,0">
+                        Clear
+                    </Button>
+
+                    <TextBlock Text="Bankroll:  " VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock Name="txtBankroll" Text="{Binding _player.BankRoll}" VerticalAlignment="Center" />
+                    <!--Image Width="25" Height="25" Margin="0,0,2,0">
+                        <Image.Source>
+                            <BitmapImage UriSource="images/dice-six-faces-one.png" />
+                        </Image.Source>
+                    </Image>
+                    <Image Width="25" Height="25" Margin="0,0,2,0">
+                        <Image.Source>
+                            <BitmapImage UriSource="images/dice-six-faces-two.png" />
+                        </Image.Source>
+                    </Image>
+                    <Image Width="25" Height="25" Margin="0,0,2,0">
+                        <Image.Source>
+                            <BitmapImage UriSource="images/dice-six-faces-three.png" />
+                        </Image.Source>
+                    </Image>
+                    <Image Width="25" Height="25" Margin="0,0,2,0">
+                        <Image.Source>
+                            <BitmapImage UriSource="images/dice-six-faces-four.png" />
+                        </Image.Source>
+                    </Image>
+                    <Image Width="25" Height="25" Margin="0,0,2,0">
+                        <Image.Source>
+                            <BitmapImage UriSource="images/dice-six-faces-five.png" />
+                        </Image.Source>
+                    </Image>
+                    <Image Width="25" Height="25" Margin="0,0,2,0">
+                        <Image.Source>
+                            <BitmapImage UriSource="/images/dice-six-faces-six.png" />
+                        </Image.Source>
+                    </Image-->
+                </StackPanel>
+                <StackPanel 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Height="80" 
+                    VerticalAlignment="Bottom">
+
+
+                    <StackPanel Orientation="Vertical">
+                        
+                    <StackPanel Orientation="Vertical">
+                        <ToggleButton x:Name="btnHardSix" Margin="0,0,5,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="15" Height="15" Margin="0,0,2,0">
+                                <Image.Source>
+                                    <BitmapImage UriSource="/images/dice-six-faces-three.png" />
+                                </Image.Source>
+                            </Image>
+                            <Image Width="15" Height="15">
+                                <Image.Source>
+                                    <BitmapImage UriSource="/images/dice-six-faces-three.png" />
+                                </Image.Source>
+                            </Image>
+                        </StackPanel>
+                    </ToggleButton>
+                        <TextBlock Text="10 to 1" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                            <ToggleButton x:Name="btnHardEight" Margin="0,0,5,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="15" Height="15" Margin="0,0,2,0">
+                                <Image.Source>
+                                    <BitmapImage UriSource="/images/dice-six-faces-four.png" />
+                                </Image.Source>
+                            </Image>
+                            <Image Width="15" Height="15">
+                                <Image.Source>
+                                    <BitmapImage UriSource="/images/dice-six-faces-four.png" />
+                                </Image.Source>
+                            </Image>
+                        </StackPanel>
+                    </ToggleButton>
+                        <TextBlock Text="9 to 1" />
+                    </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical">
+                                <ToggleButton Name="btnHardTen" Margin="0,0,5,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="15" Height="15" Margin="0,0,2,0">
+                            <Image.Source>
+                                <BitmapImage UriSource="/images/dice-six-faces-five.png" />
+                            </Image.Source>
+                            </Image>
+                            <Image Width="15" Height="15">
+                                <Image.Source>
+                                    <BitmapImage UriSource="/images/dice-six-faces-five.png" />
+                                </Image.Source>
+                            </Image>
+                        </StackPanel>
+                    </ToggleButton>
+                        <TextBlock Text="7 to 1" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <ToggleButton x:Name="btnHardFour" Margin="0,0,5,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="15" Height="15" Margin="0,0,2,0">
+                                    <Image.Source>
+                                        <BitmapImage UriSource="/images/dice-six-faces-two.png" />
+                                    </Image.Source>
+                                </Image>
+                                <Image Width="15" Height="15">
+                                    <Image.Source>
+                                        <BitmapImage UriSource="/images/dice-six-faces-two.png" />
+                                    </Image.Source>
+                                </Image>
+                            </StackPanel>
+                        </ToggleButton>
+                        <TextBlock Text="7 to 1" />
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
             </StackPanel>
 
             <ListView Margin="10,10,0,13" Name="MsgList" 
@@ -77,6 +191,19 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="TimeStamp" Width="150" DisplayMemberBinding="{Binding TimeStamp}" />
+                        <GridViewColumn Header="" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Height="20" Orientation="Horizontal">
+                                        <Image Width="20" Height="20" Margin="1,0,1,0">
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelWidth="300" UriSource="{Binding Path=PuckImageUri}" />
+                                            </Image.Source>
+                                        </Image>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Roll" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -96,6 +223,8 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Message" Width="300" DisplayMemberBinding="{Binding MsgText}" />
+                        <GridViewColumn Header="Bets" Width="60" DisplayMemberBinding="{Binding BetTotal, StringFormat='C0'}" />
+                        <GridViewColumn Header="Result" Width="60" DisplayMemberBinding="{Binding Net, StringFormat='C0'}" />
                     </GridView>
                 </ListView.View>
             </ListView>

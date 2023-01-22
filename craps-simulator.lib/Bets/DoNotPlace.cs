@@ -45,7 +45,10 @@ namespace craps_simulator.Lib.Bets {
                     : 0;
 
             return new BetResult(
-                (int)Math.Round(pays, 0, MidpointRounding.ToZero), isWinner, isLoser);
+                (int)Math.Round(pays, 0, MidpointRounding.ToZero), 
+                isWinner, 
+                isLoser,
+                isWinner ? $"{Name} Winner" : isLoser ? $"{Name} Loser" : string.Empty);
         }
     }
 }

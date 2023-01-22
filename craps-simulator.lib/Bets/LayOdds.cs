@@ -29,7 +29,8 @@ namespace craps_simulator.Lib.Bets {
                         _ => throw new Exception("Invalid Lay Odds Bet")
                     } : 0,
                 isWinner,
-                isLoser);
+                isLoser,
+                isWinner ? $"{Name} Winner" : isLoser ? $"{Name} Loser" : string.Empty);
 
 
         }

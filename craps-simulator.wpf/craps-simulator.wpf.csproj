@@ -21,6 +21,8 @@
     <None Remove="images\dice-six-faces-three.svg" />
     <None Remove="images\dice-six-faces-two.png" />
     <None Remove="images\dice-six-faces-two.svg" />
+    <None Remove="images\puck-off.jpg" />
+    <None Remove="images\puck-on.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +38,8 @@
     <Resource Include="images\dice-six-faces-three.svg" />
     <Resource Include="images\dice-six-faces-two.png" />
     <Resource Include="images\dice-six-faces-two.svg" />
+    <Resource Include="images\puck-off.jpg" />
+    <Resource Include="images\puck-on.jpeg" />
   </ItemGroup>
 
   <ItemGroup>

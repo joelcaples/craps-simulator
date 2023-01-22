@@ -19,7 +19,10 @@ namespace craps_simulator.lib.Bets {
             return new BetResult(
                 isWinner
                     ? this.Bet * Lookups.BigSixBigEight.Pays
-                    : 0, isWinner, isLoser);
+                    : 0, 
+                isWinner, 
+                isLoser,
+                isWinner ? $"{Name} Winner" : isLoser ? $"{Name} Loser" : string.Empty);
 
         }
     }

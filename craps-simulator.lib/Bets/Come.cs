@@ -42,7 +42,8 @@ namespace craps_simulator.Lib.Bets {
             return new BetResult(
                 isWinner ? this.Bet * Lookups.Come.Pays : 0, 
                 isWinner, 
-                isLoser);
+                isLoser,
+                isWinner ? $"{Name} Winner" : isLoser ? $"{Name} Loser" : string.Empty);
         }
     }
 }

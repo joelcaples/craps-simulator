@@ -6,6 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Diagnostics.Metrics;
 using System.Reflection;
 using System.Threading;
+using craps_simulator.lib.Models;
 
 namespace craps_simulator.lib.Services
 {
@@ -36,12 +37,12 @@ namespace craps_simulator.lib.Services
             public int TotalRolls { get; set; } = 0;
         }
 
-        public RunReturnDto Go(IEnumerable<IBet> bets, Msg? handler = null) {
+        public RunReturnDto Go(Player player, IEnumerable<IBet> bets, Msg? handler = null) {
 
             var winners = 0;
             var losers = 0;
             var maxIterations = 5;
-            int initialBankRoll = 1000;
+            int initialBankRoll = player.BankRoll;
             int bankroll = initialBankRoll;
             int housetake = 0;
 
@@ -60,9 +61,6 @@ namespace craps_simulator.lib.Services
                 }
 
                 var dice = GameLib.Roll();
-
-                
-
 
                 if (betNets == null)
                     throw new InvalidDataException();
