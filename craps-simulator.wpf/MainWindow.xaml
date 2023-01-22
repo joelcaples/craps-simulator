@@ -14,13 +14,13 @@
             <StackPanel 
                 Orientation="Vertical" 
                 DockPanel.Dock="Bottom">
-                
+
                 <StackPanel 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Center" 
                     Height="50" 
                     VerticalAlignment="Bottom">
-
+                    
                     <ComboBox
                         Name="cboStrategy"
                         Width="200"
@@ -136,20 +136,23 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical">
-                            <ToggleButton x:Name="btnHardEight" Margin="0,0,5,0">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="15" Height="15" Margin="0,0,2,0">
-                                <Image.Source>
-                                    <BitmapImage UriSource="/images/dice-six-faces-four.png" />
-                                </Image.Source>
-                            </Image>
-                            <Image Width="15" Height="15">
-                                <Image.Source>
-                                    <BitmapImage UriSource="/images/dice-six-faces-four.png" />
-                                </Image.Source>
-                            </Image>
-                        </StackPanel>
-                    </ToggleButton>
+                        <ToggleButton x:Name="btnHardEight" Margin="0,0,5,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="15" Height="15" Margin="0,0,2,0">
+                                    <Image.Source>
+                                        <BitmapImage UriSource="/images/dice-six-faces-four.png" />
+                                    </Image.Source>
+                                </Image>
+                                <Image Width="15" Height="15">
+                                    <Image.Source>
+                                        <BitmapImage UriSource="/images/dice-six-faces-four.png" />
+                                    </Image.Source>
+                                </Image>
+
+                                <!--local:Die Value="4" Margin="2,2,2,2" BgColor="red" ForeColor="white" />
+                                <local:Die Value="4" BgColor="red" ForeColor="white" /-->
+                            </StackPanel>
+                        </ToggleButton>
                         <TextBlock Text="9 to 1" />
                     </StackPanel>
 
