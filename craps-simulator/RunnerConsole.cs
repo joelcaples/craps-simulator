@@ -4,6 +4,7 @@ using craps_simulator.Lib.Interfaces;
 using craps_simulator.Lib.Models;
 using craps_simulator.Lib.Lib;
 using craps_simulator.lib.Services;
+using craps_simulator.lib.Models;
 
 namespace craps_simulator {
 
@@ -18,7 +19,7 @@ namespace craps_simulator {
             //var losers = 0;
             //var maxIterations = 5;
             int initialBankRoll = 1000;
-            int bankroll = initialBankRoll;
+            var player = new Player(initialBankRoll);
             //int housetake = 0;
 
             var runner = new Runner();
@@ -31,13 +32,13 @@ namespace craps_simulator {
                 //new Place(6),
                 //new Place(9)
             };
-            var result = runner.Go(bets, Runner_MsgEvt);
+            var result = runner.Go(player, bets, Runner_MsgEvt);
 
             //foreach (IBet bet in bets)
             //    bankroll += bet.Bet;
 
             //var winpct = Math.Round((float)winners / losers * iteration, 2);
-            var winnings = bankroll - initialBankRoll;
+            var winnings = player.BankRoll - initialBankRoll;
 
             LogTotals(result.TotalRolls, betNets, totalNet);
 

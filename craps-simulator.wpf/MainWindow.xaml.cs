@@ -22,6 +22,7 @@ using craps_simulator.Lib.Models;
 using craps_simulator.lib.Services;
 using craps_simulator.lib.Models;
 using craps_simulator.wpf;
+using System.ComponentModel;
 
 namespace craps_simulator.wpf {
 
@@ -48,6 +49,7 @@ namespace craps_simulator.wpf {
 
         public MainWindow() {
             InitializeComponent();
+            this.DataContext = this;
 
             //DataContext = new MainWindowViewModel(_player);
 
@@ -94,29 +96,50 @@ namespace craps_simulator.wpf {
             if ((btnHardEight.IsChecked ?? false) && (!list.Any(l => l.Type == BetType.HardEight))) list.Add(new HardEight());
             if ((btnHardTen.IsChecked ?? false)   && (!list.Any(l => l.Type == BetType.HardTen))) list.Add(new HardTen());
 
+            this.Cursor = Cursors.Wait;
             runner.Go(_player, list, Runner_MsgEvt);
+            this.Cursor = Cursors.Arrow;
         }
 
         private void Runner_MsgEvt(object sender, RollResultEventArgs e) {
 
             var net = e.BetResults.Sum(r => r.Result.IsWinner ? r.Result.Pays : r.Result.IsLoser ? r.Bet.Bet * -1 : 0);
 
-            _rollResultListItems.Insert(0, new RollResultListItem(
+            _player.BankRoll += (int)Math.Round(net, 0, MidpointRounding.ToZero);
+            //txtBankroll.Text = _player.BankRoll.ToString("C0");
+
+            _rollResultListItems.Add(new RollResultListItem(
                 e.Game,
+                e.BankRoll,
                 e.Dice,
                 $"{string.Join("; ", e.BetResults.Where(r => !string.IsNullOrEmpty(r.Result.Msg)).Select(r => r.Result.Msg))}",
                 e.BetResults.Sum(r => r.Bet.Bet),
                 net
             ));
+            Console.WriteLine(e.BankRoll);
             MsgList.Items.Refresh();
 
-            _player.BankRoll += (int)Math.Round(net, 0, MidpointRounding.ToZero);
-            txtBankroll.Text = _player.BankRoll.ToString("C0");
+
+            MsgList.SelectedIndex = MsgList.Items.Count - 1;
+            MsgList.ScrollIntoView(MsgList.SelectedItem);
         }
 
         private void OnClear(object sender, RoutedEventArgs e) {
             _rollResultListItems.Clear();
             MsgList.Items.Refresh();
         }
+
+        private void OnReset(object sender, RoutedEventArgs e) {
+            _rollResultListItems.Clear();
+            _player = new Player(5000);
+            MsgList.Items.Refresh();
+            RaisePropertyChanged("_player");
+        }
+
+        private void RaisePropertyChanged(string propName) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+
     }
 }

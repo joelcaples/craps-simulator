@@ -12,15 +12,22 @@ namespace craps_simulator.lib.Services
 {
     public class RollResultEventArgs {
 
-        public RollResultEventArgs(Game game, Dice dice, IEnumerable<(IBet Bet, IBetResult Result)> betResults) {
-            Game = game;
-            Dice = dice;
-            BetResults = betResults;
+        private readonly Game _game;
+        private readonly int _bankRoll;
+        private readonly Dice _dice;
+        private readonly IEnumerable<(IBet Bet, IBetResult Result)> _betResults;
+
+        public RollResultEventArgs(Game game, int bankRoll, Dice dice, IEnumerable<(IBet Bet, IBetResult Result)> betResults) {
+            _game = game;
+            _bankRoll = bankRoll;
+            _dice = dice;
+            _betResults = betResults;
         }
 
-        public Game Game { get; }
-        public Dice Dice { get; }
-        public IEnumerable<(IBet Bet, IBetResult Result)> BetResults { get; }
+        public Game Game => _game;
+        public int BankRoll => _bankRoll;
+        public Dice Dice => _dice;
+        public IEnumerable<(IBet Bet, IBetResult Result)> BetResults => _betResults;
     }
 
     public class Runner
@@ -100,7 +107,7 @@ namespace craps_simulator.lib.Services
                 }
 
                 //RaiseMsg(dice, results);
-                handler?.Invoke(this, new RollResultEventArgs(game, dice, results));
+                handler?.Invoke(this, new RollResultEventArgs(game, bankroll, dice, results));
                 var throwResult = GameLib.Advance(game, dice);
 
 //                LogResult(throwResult, dice, betNets.Sum(bi => bi.SessionNet));

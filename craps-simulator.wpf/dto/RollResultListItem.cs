@@ -1,4 +1,5 @@
-﻿using craps_simulator.Lib.Models;
+﻿using craps_simulator.lib.Models;
+using craps_simulator.Lib.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +10,21 @@ namespace craps_simulator.wpf.dto {
     public class RollResultListItem {
 
         private readonly Game _game;
+        private readonly int _bankRoll;
         private readonly Dice _dice;
         private readonly int _betTotal;
         private readonly decimal _net;
 
         public RollResultListItem(
             Game game,
+            int bankRoll,
             Dice dice, 
             string msgText,
             int betTotal,
             decimal net) {
 
             _game = game;
+            _bankRoll = bankRoll;
             _dice = dice;
             _betTotal = betTotal;
             _net = net;
@@ -28,6 +32,7 @@ namespace craps_simulator.wpf.dto {
         }
 
         public string TimeStamp { get; } = DateTime.Now.ToString();
+        public int BankRoll => _bankRoll;
         public Dice Dice => _dice;
         public string DiceRoll => $"{_dice.Die1},{_dice.Die2}";
         public string MsgText { get; } = string.Empty;
