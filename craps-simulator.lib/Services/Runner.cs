@@ -35,9 +35,39 @@ namespace craps_simulator.lib.Services
         public delegate void Msg(object sender, RollResultEventArgs e);
 
         private class BetNetDto {
-            public IBet? Bet { get; set; }
-            public int SessionNet { get; set; }
-            public int TotalNet { get; set; }
+
+            private readonly IBet _bet;
+            private readonly int _placedAmount;
+            private int _sessionNet;
+            private int _totalNet;
+
+            public BetNetDto(IBet bet, int placedAmount, int sessionNet, int totalNet) {
+                _bet = bet;
+                _placedAmount = placedAmount;
+                _sessionNet = sessionNet;
+                _totalNet = totalNet;
+            }
+
+            public IBet Bet => _bet;
+            public int PlacedAmount => _placedAmount;
+
+            public int SessionNet {
+                set {
+                    _sessionNet = value;
+                }
+                get {
+                    return _sessionNet;
+                }
+            }
+
+            public int TotalNet {
+                set {
+                    _totalNet = value;
+                }
+                get {
+                    return _totalNet;
+                }
+            }
         }
 
         public class RunReturnDto {
@@ -58,7 +88,7 @@ namespace craps_simulator.lib.Services
             int iteration = 0;
             bool exitLoop = false;
 
-            var betNets = bets.Select(b => new BetNetDto() { Bet = b, SessionNet = 0, TotalNet = 0 }).ToList();
+            var betNets = bets.Select(b => new BetNetDto(b, 0, 0, 0)).ToList();
 
             while (!exitLoop) {
 
