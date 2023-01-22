@@ -71,7 +71,7 @@ namespace craps_simulator.wpf {
             foreach (var s in _strategies.Where(s => s.IsSelected)) {
                 switch(s.Name) {
                     case "Iron Cross":
-                        if(!list.Any(l => l.Type == BetType.Pass)) list.Add(new Pass());
+                        if (!list.Any(l => l.Type == BetType.Pass)) list.Add(new Pass());
                         if (!list.Any(l => l.Type == BetType.TakeOdds)) list.Add(new TakeOdds());
                         if (!list.Any(l => l.Type == BetType.PlaceFive)) list.Add(new Place(5));
                         if (!list.Any(l => l.Type == BetType.PlaceSix)) list.Add(new Place(6));
@@ -106,7 +106,6 @@ namespace craps_simulator.wpf {
             var net = e.BetResults.Sum(r => r.Result.IsWinner ? r.Result.Pays : r.Result.IsLoser ? r.Bet.Bet * -1 : 0);
 
             _player.BankRoll += (int)Math.Round(net, 0, MidpointRounding.ToZero);
-            //txtBankroll.Text = _player.BankRoll.ToString("C0");
 
             _rollResultListItems.Add(new RollResultListItem(
                 e.Game,
@@ -116,10 +115,9 @@ namespace craps_simulator.wpf {
                 e.BetResults.Sum(r => r.Bet.Bet),
                 net
             ));
-            Console.WriteLine(e.BankRoll);
+
+            //Console.WriteLine(e.BankRoll);
             MsgList.Items.Refresh();
-
-
             MsgList.SelectedIndex = MsgList.Items.Count - 1;
             MsgList.ScrollIntoView(MsgList.SelectedItem);
         }
