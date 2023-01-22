@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
-    <RootNamespace>caps_simulator.wpf</RootNamespace>
+    <RootNamespace>craps_simulator.wpf</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -23,6 +23,10 @@
     <None Remove="images\dice-six-faces-two.svg" />
     <None Remove="images\puck-off.jpg" />
     <None Remove="images\puck-on.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.2.1" />
   </ItemGroup>
 
   <ItemGroup>
