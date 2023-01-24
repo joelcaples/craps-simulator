@@ -24,8 +24,8 @@ namespace craps_simulator.wpf {
         }
 
         public short Value { get; set; }
-        public string ForeColor { get; set; } = "green";
-        public string BgColor { get; set; } = "yellow";
+        public string DieColor { get; set; } = "white";
+        public string DotColor { get; set; } = "black";
 
         public bool IsOne => Value == 1;
         public bool IsTwo => Value == 2;
