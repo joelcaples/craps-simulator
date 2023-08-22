@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace craps_simulator.service.Controllers {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("craps")]
     public class CrapsController : ControllerBase {
 
         private readonly ILogger<CrapsController> _logger;
