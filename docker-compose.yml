@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  craps-simulator.service:
+    image: ${DOCKER_REGISTRY-}crapssimulatorservice
+    build:
+      context: .
+      dockerfile: craps-simulator.service/Dockerfile
