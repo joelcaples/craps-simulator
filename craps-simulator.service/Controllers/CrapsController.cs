@@ -16,6 +16,11 @@ namespace craps_simulator.service.Controllers {
             _logger = logger;
         }
 
+        [HttpGet]
+        public IActionResult Get() {
+            return Ok("C-R-A-P-S");
+        }
+
         [HttpPost]
         public ResponseDto Throw([FromBody] RequestDto request) {
 
