@@ -42,7 +42,7 @@ Button.defaultProps = {
 function clickMe() {
   // alert("You clicked me!");
 
-  axios.post('http://localhost:5151/craps', {
+  axios.post('http://localhost:3001/craps', {
     "game": {
       "phase": 0,
       "point": 0
