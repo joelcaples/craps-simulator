@@ -16,7 +16,7 @@ docker build --force-rm -t craps-simulator-react -f .\craps-simulator.react\Dock
 - Service API: 3001:
 - Website: 3000
 ```
-docker run -dp 127.0.0.1:3001:80 craps-simulator-service
+docker run -dp 127.0.0.1:5000:80 craps-simulator-service
 docker run -dp 127.0.0.1:3000:3000 craps-simulator-react
 ```
 
