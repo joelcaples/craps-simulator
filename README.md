@@ -50,3 +50,7 @@ $user_profile_path="C:\Users\jmcap"
 docker run --rm -it -dp 8080:80 -p 8443:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="$password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v $user_profile_path\.aspnet\https:/https/ craps-simulator-service
 ```
 
+### Run Docker Compose
+```
+docker compuse up -d
+```
